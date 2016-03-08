@@ -1,0 +1,3 @@
+﻿@model IEnumerable<chess.Models.user_type>
+
+@Html.DropDownList("user_type_dropdown", Model.Select(x => new SelectListItem { Value = x.id.ToString(), Text = x.type_desc}))
