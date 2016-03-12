@@ -5,7 +5,7 @@ using System.Web;
 using System.Data.SqlClient;
 using System.ComponentModel.DataAnnotations;
 
-namespace chess.Models
+namespace film.Models
 {
     public class person
     {

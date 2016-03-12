@@ -5,7 +5,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
 
-namespace chess.Models
+namespace film.Models
 {
     public class post
     {

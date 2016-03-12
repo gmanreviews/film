@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using chess.Models;
+using film.Models;
 
-namespace chess.Controllers
+namespace film.Controllers
 {
     public class UserTypeController : Controller
     {

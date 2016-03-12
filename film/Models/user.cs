@@ -5,7 +5,7 @@ using System.Web;
 using System.Data.SqlClient;
 using System.ComponentModel.DataAnnotations;
 
-namespace chess.Models
+namespace film.Models
 {
     public class user
     {
@@ -22,7 +22,7 @@ namespace chess.Models
         [Display(Name = "E-Mail")]
         public string email { get; set; }
         public person person { get; set; }
-        public List<usergroup> usergroups { get; set; }
+        //public List<usergroup> usergroups { get; set; }
         [Display(Name = "User Type")]
         public user_type user_type { get; set; }
 
