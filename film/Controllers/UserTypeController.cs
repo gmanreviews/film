@@ -13,5 +13,6 @@ namespace film.Controllers
         {
             return View(user_type_model.get_all_user_types());
         }
+
     }
 }

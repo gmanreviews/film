@@ -41,3 +41,9 @@ D:\projects\film\film\bin\Antlr3.Runtime.pdb
 D:\projects\film\film\bin\Newtonsoft.Json.xml
 D:\projects\film\film\obj\Debug\film.dll
 D:\projects\film\film\obj\Debug\film.pdb
+D:\projects\film\film\bin\Microsoft.Threading.Tasks.dll
+D:\projects\film\film\bin\Microsoft.Threading.Tasks.Extensions.Desktop.dll
+D:\projects\film\film\bin\Microsoft.Threading.Tasks.Extensions.dll
+D:\projects\film\film\bin\Microsoft.Threading.Tasks.xml
+D:\projects\film\film\bin\Microsoft.Threading.Tasks.Extensions.xml
+D:\projects\film\film\bin\Microsoft.Threading.Tasks.Extensions.Desktop.xml
