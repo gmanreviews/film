@@ -41,10 +41,11 @@ namespace film.Controllers
         }
 
         [HttpPost]
-        public ActionResult signup(user user)
+        public ActionResult signup(user user, int user_type_dropdown = 0)
         {
             if (ModelState.IsValid)
             {
+                user.user_type = new user_type(user_type_dropdown);
                 user_model.add_user(user);
                 return RedirectToAction("Index", "Home");
             }

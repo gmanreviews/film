@@ -87,7 +87,8 @@ namespace film.Models
                 SqlDataReader reader = db.query_db("EXEC create_user '" + user.username + "','"
                                                                         + bcrypt.encrypt(user.password) + "','"
                                                                         + user.email + "',"
-                                                                        + user.person.id);
+                                                                        + user.person.id + ","
+                                                                        + user.user_type.id);
                 while (reader.Read())
                 {
                     if ((bool)reader["success"]) user.id = int.Parse(reader["result"].ToString());
