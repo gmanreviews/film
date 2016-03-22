@@ -10,16 +10,31 @@ namespace film.Models
 {
     public class curl
     {
-        /// <summary>
-        /// this function needs to be recursive for multiple pages until it dies.
-        /// </summary>
-        public static void update_box_office_data()
+        public static void update_film_list()
         {
+            string url = "http://www.boxofficemojo.com/schedule/?view=bydate&release=theatrical&yr=2016&p=.htm";
             WebClient webclient = new WebClient();
-            string websiteinstring = webclient.DownloadString("http://www.boxofficemojo.com/yearly/chart/?yr=2016&p=.htm");
-            List<movie> movies = parse_film_data(websiteinstring);
+            string page = webclient.DownloadString(url);
+
         }
 
+        public static void update_box_office_data()
+        {
+            int count = 0;
+            bool keep_running = true;
+            string url_pt1 = "http://www.boxofficemojo.com/yearly/chart/?page=";
+            string url_pt2 = "&view=releasedate&view2=domestic&yr=2016&p=.htm";
+            // http://www.boxofficemojo.com/yearly/chart/?page=3&view=releasedate&view2=domestic&yr=2016&p=.htm
+            while (keep_running)
+            {
+                count++;
+                WebClient webclient = new WebClient();
+                string websiteinstring = webclient.DownloadString(url_pt1 + count + url_pt2);
+                List<movie> movies = parse_film_data(websiteinstring);
+                if (movies.Count == 0) keep_running = false;
+            }
+        }
+        
         private static List<movie> parse_film_data(string webpage)
         {
             List<movie> movies = new List<movie>();
@@ -27,12 +42,13 @@ namespace film.Models
             Regex regex = new Regex("<td>.*</td>");
             foreach (Match m in regex.Matches(webpage))
             {
-                parse_film_data_lvl2(m.Value.ToString());
+                movies.AddRange(parse_film_data_lvl2(m.Value.ToString()));
             }
 
 
             return movies;
         }
+        
 
         private static List<movie> parse_film_data_lvl2(string table)
         {
@@ -49,13 +65,14 @@ namespace film.Models
             // 5 - opening box office
             // 6 - theatre count (opening)
             // 7 - release date
-            // 8 - release month (1 - January)
+            // 8 - nonsense
+            // 9 - release month (1 - January)
 
-            Regex regex = new Regex("<td>.*</td>");
+            Regex regex = new Regex("<td(.*?)?>.*?</td>");
             foreach (Match m in regex.Matches(table))
             {
                 count++;
-                if (count % 8 == 1)
+                if (count % 9 == 1)
                 {
                     if (current_movie.id != 0)
                     {
@@ -64,9 +81,9 @@ namespace film.Models
                     current_movie.film_name = get_movie_name(m.Value.ToString());
                     current_movie.bo_mojo_slug = get_bo_mojo_slug(m.Value.ToString());
                 }
-                else if (count % 8 == 3) current_movie.box_office_total = get_box_office(m.Value.ToString());
-                else if (count % 8 == 5) current_movie.box_office_opening = get_box_office(m.Value.ToString());
-                else if (count % 8 == 8)
+                else if (count % 9 == 3) current_movie.box_office_total = get_box_office(m.Value.ToString());
+                else if (count % 9 == 5) current_movie.box_office_opening = get_box_office(m.Value.ToString());
+                else if (count % 9 == 0)
                 {
                     current_movie.release_month = get_release_month(m.Value.ToString());
                     current_movie = movie_model.add_movie(current_movie);
@@ -89,7 +106,7 @@ namespace film.Models
 
         private static string get_bo_mojo_slug(string text)
         {
-            Regex regex = new Regex("id=[a-z0-9]+[.]htm");
+            Regex regex = new Regex("id=[a-z0-9,]+[.]htm");
             Match m = regex.Match(text);
             string output = m.Value.ToString().Replace("id=", "").Replace(".htm", "");
             return output;

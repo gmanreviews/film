@@ -30,12 +30,14 @@ namespace film.Models
             {
                 db db = new db();
                 db.connect();
-                SqlDataReader reader = db.query_db("EXEC add_movie '" + movie.film_name + "','" + movie.bo_mojo_slug + "'");
+                SqlDataReader reader = db.query_db("EXEC add_movie '" + general.clean(movie.film_name) + "','" + movie.bo_mojo_slug + "'");
                 while (reader.Read())
                 {
                     if ((bool)reader["result"]) movie.id = int.Parse(reader["id"].ToString());
                     else throw new Exception("db failure");
                 }
+                reader.Close();
+                db.disconnect();
             }
             catch (Exception)
             {
@@ -44,9 +46,34 @@ namespace film.Models
             return movie;
         }
 
-        public static bool update_bo_data(movie movie)
+        public static void update_bo_data(movie movie)
         {
-            return true;
+            movie.id = get_movie_on_slug(movie);
+
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC update_bo_data " + movie.id + "," +
+                                                                      + movie.release_month + ",'"
+                                                                      + general.clean(movie.film_name) + "','"
+                                                                      + movie.box_office_total + "','"
+                                                                      + movie.box_office_opening + "'");
+            reader.Close();
+            db.disconnect();
+            //return true;
+        }
+
+        private static int get_movie_on_slug(movie movie)
+        {
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC get_movie_on_slug '" + movie.bo_mojo_slug + "'");
+            while (reader.Read())
+            {
+                movie.id = int.Parse(reader["id"].ToString());
+            }
+            reader.Close();
+            db.disconnect();
+            return movie.id;
         }
     }
 

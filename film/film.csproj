@@ -138,6 +138,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DataCollectionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MamoController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserTypeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -146,6 +147,7 @@
     <Compile Include="Models\bcrypt.cs" />
     <Compile Include="Models\curl.cs" />
     <Compile Include="Models\db.cs" />
+    <Compile Include="Models\general.cs" />
     <Compile Include="Models\movie.cs" />
     <Compile Include="Models\person.cs" />
     <Compile Include="Models\post.cs" />
@@ -196,6 +198,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\DataCollection\" />
+    <Folder Include="Views\Mamo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

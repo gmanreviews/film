@@ -8,7 +8,7 @@ namespace film.Models
 {
     public class db
     {
-        private SqlConnection connection = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["jamchess_test"].ConnectionString);
+        private SqlConnection connection = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["film_test_local"].ConnectionString);
 
         public db() { }
 

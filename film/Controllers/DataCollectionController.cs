@@ -21,6 +21,11 @@ namespace film.Controllers
             curl.update_box_office_data();
             return Json(new { work = true }, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult UpdateFilmList()
+        {
+
+        }
         
         
     }
