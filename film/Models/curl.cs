@@ -71,26 +71,36 @@ namespace film.Models
             Regex regex = new Regex("<td(.*?)?>.*?</td>");
             foreach (Match m in regex.Matches(table))
             {
-                count++;
-                if (count % 9 == 1)
-                {
-                    if (current_movie.id != 0)
+                try {
+                    count++;
+                    if (count % 9 == 1)
                     {
-                        current_movie = new movie();
+                        if (current_movie.id != 0)
+                        {
+                            current_movie = new movie();
+                        }
+                        current_movie.film_name = get_movie_name(m.Value.ToString());
+                        current_movie.bo_mojo_slug = get_bo_mojo_slug(m.Value.ToString());
                     }
-                    current_movie.film_name = get_movie_name(m.Value.ToString());
-                    current_movie.bo_mojo_slug = get_bo_mojo_slug(m.Value.ToString());
+                    else if (count % 9 == 3) current_movie.box_office_total = get_box_office(m.Value.ToString());
+                    else if (count % 9 == 5) current_movie.box_office_opening = get_box_office(m.Value.ToString());
+                    else if (count % 9 == 7)
+                    {
+                        current_movie.release_date = get_release_date(m.Value.ToString());
+                        current_movie.release_month = get_release_month(current_movie.release_date);
+                    }
+                    else if (count % 9 == 0)
+                    {
+                        if (current_movie.film_name.Length != 0)
+                        {
+                            current_movie = movie_model.add_movie(current_movie);
+                            movie_model.update_bo_data(current_movie);
+                            movies.Add(current_movie);
+                        }
+                        else current_movie.id = 1;
+                    }
                 }
-                else if (count % 9 == 3) current_movie.box_office_total = get_box_office(m.Value.ToString());
-                else if (count % 9 == 5) current_movie.box_office_opening = get_box_office(m.Value.ToString());
-                else if (count % 9 == 0)
-                {
-                    current_movie.release_month = get_release_month(m.Value.ToString());
-                    current_movie = movie_model.add_movie(current_movie);
-                    movie_model.update_bo_data(current_movie);
-                    movies.Add(current_movie);
-                }
-                m.Value.ToString();
+                catch { }
             }
 
             return movies;
@@ -120,21 +130,17 @@ namespace film.Models
             return output;
         }
 
-        private static int get_release_month(string text)
+        private static int get_release_month(DateTime date)
         {
-            try {
-                Regex regex = new Regex("<font [a-z]+=\"[0-9]+\">[0-9]+");
-                Regex font = new Regex("<font [a-z]+=\"[0-9]+\">");
-                Match m = regex.Match(text);
-                string output = m.Value.ToString();
-                output = font.Replace(output, "");
-                return int.Parse(output);
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
+            return date.Month;
+        }
 
+        private static DateTime get_release_date(string text)
+        {
+            Regex regex = new Regex("[0-9]+(/)[0-9]+");
+            string date_string = regex.Match(text).Value.ToString();
+            DateTime release_date = new DateTime(2016, int.Parse(date_string.Substring(0, date_string.IndexOf('/'))), int.Parse(date_string.Substring(date_string.IndexOf('/') + 1, date_string.Length - (date_string.IndexOf('/') + 1))));
+            return release_date;
         }
     }
 }

@@ -148,6 +148,7 @@
     <Compile Include="Models\curl.cs" />
     <Compile Include="Models\db.cs" />
     <Compile Include="Models\general.cs" />
+    <Compile Include="Models\mamo.cs" />
     <Compile Include="Models\movie.cs" />
     <Compile Include="Models\person.cs" />
     <Compile Include="Models\post.cs" />
@@ -194,11 +195,11 @@
     <Content Include="Views\UserType\user_type_dropdown.cshtml" />
     <Content Include="Views\User\LoginForm.cshtml" />
     <Content Include="Views\User\signup.cshtml" />
+    <Content Include="Views\Mamo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\DataCollection\" />
-    <Folder Include="Views\Mamo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
