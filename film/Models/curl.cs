@@ -15,7 +15,38 @@ namespace film.Models
             string url = "http://www.boxofficemojo.com/schedule/?view=bydate&release=theatrical&yr=2016&p=.htm";
             WebClient webclient = new WebClient();
             string page = webclient.DownloadString(url);
+            parse_film_list(page);
+        }
 
+        private static void parse_film_list(string page)
+        {
+            Regex regex = new Regex("<p>.*?</p>");
+            foreach (Match m in regex.Matches(page))
+            {
+                parse_month(m.Value.ToString());
+            }
+
+        }
+        private static void parse_month(string month)
+        {
+            movie current_movie = new movie();
+            Regex regex = new Regex("<a.*?>.*?<br>");
+            foreach (Match m in regex.Matches(month))
+            {
+                current_movie.film_name = get_movie_name(m.Value.ToString()).Replace("<b>","").Replace("</b>","");
+                current_movie.bo_mojo_slug = get_bo_mojo_slug(m.Value.ToString());
+                current_movie = movie_model.add_movie(current_movie);
+                try {
+                    current_movie.release_date = get_release_date(m.Value.ToString());
+                    current_movie.release_month = get_release_month(current_movie.release_date);
+                    movie_model.update_bo_data(current_movie);
+                }
+                catch
+                {
+                    current_movie.release_month = 13;
+                    movie_model.update_bo_data(current_movie);
+                }
+            }
         }
 
         public static void update_box_office_data()
@@ -35,7 +66,6 @@ namespace film.Models
             }
             mamo_model.update_mamo_top_ten();
         }
-        
         private static List<movie> parse_film_data(string webpage)
         {
             List<movie> movies = new List<movie>();
@@ -49,8 +79,6 @@ namespace film.Models
 
             return movies;
         }
-        
-
         private static List<movie> parse_film_data_lvl2(string table)
         {
             List<movie> movies = new List<movie>();
@@ -106,7 +134,6 @@ namespace film.Models
 
             return movies;
         }
-
         private static string get_movie_name(string text)
         {
             Regex regex = new Regex("htm\">[A-Za-z0-9 -.():,!'&?]+</a>");
@@ -114,7 +141,6 @@ namespace film.Models
             string output = m.Value.ToString().Replace("</a>", "").Replace("htm\">", "");
             return output;
         }
-
         private static string get_bo_mojo_slug(string text)
         {
             Regex regex = new Regex("id=[a-z0-9,]+[.]htm");
@@ -122,7 +148,6 @@ namespace film.Models
             string output = m.Value.ToString().Replace("id=", "").Replace(".htm", "");
             return output;
         }
-
         private static string get_box_office(string text)
         {
             Regex regex = new Regex("[$]([0-9]+(,)?)+");
@@ -130,12 +155,10 @@ namespace film.Models
             string output = m.Value.ToString().Replace(",", "").Replace("$", "");
             return output;
         }
-
         private static int get_release_month(DateTime date)
         {
             return date.Month;
         }
-
         private static DateTime get_release_date(string text)
         {
             Regex regex = new Regex("[0-9]+(/)[0-9]+");

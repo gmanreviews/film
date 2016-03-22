@@ -24,6 +24,7 @@ namespace film.Controllers
 
         public JsonResult UpdateFilmList()
         {
+            curl.update_film_list();
             return Json(new { work = true }, JsonRequestBehavior.AllowGet);
         }
         
