@@ -33,6 +33,7 @@ namespace film.Models
                 List<movie> movies = parse_film_data(websiteinstring);
                 if (movies.Count == 0) keep_running = false;
             }
+            mamo_model.update_mamo_top_ten();
         }
         
         private static List<movie> parse_film_data(string webpage)

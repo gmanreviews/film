@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
+using System.ComponentModel.DataAnnotations;
 
 namespace film.Models
 {
     public class movie
     {
         public int id { get; set; }
+        [Display(Name = "Film Title")]
         public string film_name { get; set; }
+        [Display(Name = "Total Box Office")]
+        //[DisplayFormat(DataFormatString = "{0:C3}")]
         public string box_office_total { get; set; }
+        [Display(Name = "Opening Weekend Box Office")]
+        //[DisplayFormat(DataFormatString = "{0:C}")]
         public string box_office_opening { get; set; }
         public int release_month { get; set; }
+        [Display(Name = "Release Date")]
         public DateTime release_date { get; set; }
         public string bo_mojo_slug { get; set; }
 
@@ -20,6 +27,14 @@ namespace film.Models
         public movie(int id)
         {
             this.id = id;
+        }
+        public movie(int id, string film_name, string box_office_total, string box_office_opening, DateTime release_date)
+        {
+            this.id = id;
+            this.film_name = film_name;
+            this.box_office_total = box_office_total;
+            this.box_office_opening = box_office_opening;
+            this.release_date = release_date;
         }
     }
 
