@@ -11,5 +11,27 @@ namespace film.Models
         {
             return input.Replace("'", "''");
         }
+
+        public static user user
+        {
+            get
+            {
+                try
+                {
+                    if (HttpContext.Current.Session["user"] != null)
+                        return (user)HttpContext.Current.Session["user"];
+                    else
+                        return new user();
+                }
+                catch
+                {
+                    return new user();
+                }
+            }
+            set
+            {
+                HttpContext.Current.Session["user"] = value;
+            }
+        }
     }
 }

@@ -25,6 +25,16 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
             </div>
+            <div>
+                @if (film.Models.general.user.id == 0)
+                {
+                    Html.RenderAction("LoginForm", "User");
+                }
+                else
+                {
+                    Html.RenderAction("LoggedInDisplay", "User");
+                }
+            </div>
         </div>
     </div>
     <div class="container body-content">

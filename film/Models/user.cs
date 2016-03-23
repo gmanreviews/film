@@ -74,7 +74,22 @@ namespace film.Models
         public static bool login_authenticate(user user)
         {
             if (user.password == null || get_password(user) == null) return false;
-            else return bcrypt.test_password(user.password, get_password(user));
+            else return bcrypt.test_password(user.password, get_hashed_password(user));
+        }
+
+        private static string get_hashed_password(user user)
+        {
+            string output = "";
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC get_hashed_password '" + user.username + "'");
+            while (reader.Read())
+            {
+                if ((bool)reader["result"]) output = reader["password"].ToString();
+            }
+            reader.Close();
+            db.disconnect();
+            return output;
         }
 
         public static user add_user(user user)
@@ -109,6 +124,26 @@ namespace film.Models
             user.password = null;
             user.password2 = null;
             return user;
+        }
+
+        public static user get_user(user user)
+        {
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC get_user '" + user.username + "'");
+            while (reader.Read())
+            {
+                user.id = int.Parse(reader["id"].ToString());
+                remove_passwords(user);
+            }
+            reader.Close();
+            db.disconnect();
+            return user;
+        }
+
+        public static void logout()
+        {
+            general.user = new user();
         }
 
     }

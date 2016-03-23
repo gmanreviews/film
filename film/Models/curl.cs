@@ -17,7 +17,25 @@ namespace film.Models
             string page = webclient.DownloadString(url);
             parse_film_list(page);
         }
-
+        public static void update_box_office_data()
+        {
+            int count = 0;
+            bool keep_running = true;
+            string url_pt1 = "http://www.boxofficemojo.com/yearly/chart/?page=";
+            string url_pt2 = "&view=releasedate&view2=domestic&yr=2016&p=.htm";
+            // http://www.boxofficemojo.com/yearly/chart/?page=3&view=releasedate&view2=domestic&yr=2016&p=.htm
+            while (keep_running)
+            {
+                count++;
+                WebClient webclient = new WebClient();
+                string websiteinstring = webclient.DownloadString(url_pt1 + count + url_pt2);
+                List<movie> movies = parse_film_data(websiteinstring);
+                if (movies.Count == 0) keep_running = false;
+            }
+            mamo_model.update_mamo_top_ten();
+        }
+        
+        #region helper private functions
         private static void parse_film_list(string page)
         {
             Regex regex = new Regex("<font.*>.*</font>");
@@ -49,23 +67,7 @@ namespace film.Models
             }
         }
 
-        public static void update_box_office_data()
-        {
-            int count = 0;
-            bool keep_running = true;
-            string url_pt1 = "http://www.boxofficemojo.com/yearly/chart/?page=";
-            string url_pt2 = "&view=releasedate&view2=domestic&yr=2016&p=.htm";
-            // http://www.boxofficemojo.com/yearly/chart/?page=3&view=releasedate&view2=domestic&yr=2016&p=.htm
-            while (keep_running)
-            {
-                count++;
-                WebClient webclient = new WebClient();
-                string websiteinstring = webclient.DownloadString(url_pt1 + count + url_pt2);
-                List<movie> movies = parse_film_data(websiteinstring);
-                if (movies.Count == 0) keep_running = false;
-            }
-            mamo_model.update_mamo_top_ten();
-        }
+        
         private static List<movie> parse_film_data(string webpage)
         {
             List<movie> movies = new List<movie>();
@@ -166,5 +168,6 @@ namespace film.Models
             DateTime release_date = new DateTime(2016, int.Parse(date_string.Substring(0, date_string.IndexOf('/'))), int.Parse(date_string.Substring(date_string.IndexOf('/') + 1, date_string.Length - (date_string.IndexOf('/') + 1))));
             return release_date;
         }
+        #endregion
     }
 }

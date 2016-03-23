@@ -20,12 +20,18 @@ namespace film.Controllers
             return View(new user());
         }
 
+        public ActionResult LoggedInDisplay()
+        {
+            return View(general.user);
+        }
+
         [HttpPost]
         public ActionResult LoginForm(user user)
         {
             if (user_model.login_authenticate(user))
             {
-                return RedirectToAction("Index", "User");
+                general.user = user_model.get_user(user);
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -55,6 +61,12 @@ namespace film.Controllers
                 user = user_model.remove_passwords(user);
                 return View(user);
             }
+        }
+
+        public ActionResult Logout()
+        {
+            user_model.logout();
+            return RedirectToAction("Index", "Home");
         }
         
     }

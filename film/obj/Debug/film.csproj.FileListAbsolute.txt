@@ -1,4 +1,3 @@
-D:\projects\film\film\obj\Debug\film.csprojResolveAssemblyReference.cache
 D:\projects\film\film\bin\roslyn\csc.exe
 D:\projects\film\film\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 D:\projects\film\film\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -47,3 +46,4 @@ D:\projects\film\film\bin\Microsoft.Threading.Tasks.Extensions.dll
 D:\projects\film\film\bin\Microsoft.Threading.Tasks.xml
 D:\projects\film\film\bin\Microsoft.Threading.Tasks.Extensions.xml
 D:\projects\film\film\bin\Microsoft.Threading.Tasks.Extensions.Desktop.xml
+D:\projects\film\film\obj\Debug\film.csprojResolveAssemblyReference.cache
