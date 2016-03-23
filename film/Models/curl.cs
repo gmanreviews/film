@@ -20,7 +20,7 @@ namespace film.Models
 
         private static void parse_film_list(string page)
         {
-            Regex regex = new Regex("<p>.*?</p>");
+            Regex regex = new Regex("<font.*>.*</font>");
             foreach (Match m in regex.Matches(page))
             {
                 parse_month(m.Value.ToString());
@@ -136,7 +136,7 @@ namespace film.Models
         }
         private static string get_movie_name(string text)
         {
-            Regex regex = new Regex("htm\">[A-Za-z0-9 -.():,!'&?]+</a>");
+            Regex regex = new Regex("htm\">[A-Za-z0-9 -.():,!'&?<>/]+</a>");
             Match m = regex.Match(text);
             string output = m.Value.ToString().Replace("</a>", "").Replace("htm\">", "");
             return output;
