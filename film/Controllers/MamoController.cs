@@ -19,5 +19,10 @@ namespace film.Controllers
         {
             return View(mamo_model.get_mamo_top_ten());
         }
+
+        public ActionResult Team(int id)
+        {
+            return View(mamo_model.get_player_mamo_team(new user(id)));
+        }
     }
 }

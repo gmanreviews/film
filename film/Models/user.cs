@@ -133,7 +133,11 @@ namespace film.Models
             SqlDataReader reader = db.query_db("EXEC get_user '" + user.username + "'");
             while (reader.Read())
             {
-                user.id = int.Parse(reader["id"].ToString());
+                user.id = int.Parse(reader["user_id"].ToString());
+                user.person = new person(int.Parse(reader["person_id"].ToString()),
+                                         reader["first_name"].ToString(),
+                                         reader["last_name"].ToString(),
+                                         reader["country_name"].ToString());
                 remove_passwords(user);
             }
             reader.Close();

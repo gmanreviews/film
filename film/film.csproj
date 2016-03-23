@@ -199,6 +199,7 @@
     <Content Include="Views\Mamo\TopTen.cshtml" />
     <Content Include="Views\User\LoggedInDisplay.cshtml" />
     <Content Include="Views\User\LoginForm.cshtml" />
+    <Content Include="Views\Mamo\Team.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

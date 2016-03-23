@@ -19,6 +19,19 @@ namespace film.Models
         [Required]
         [Display(Name = "Country")]
         public string country { get; set; }
+
+        public person() { }
+        public person(int id)
+        {
+            this.id = id;
+        }
+        public person(int id, string first_name, string last_name, string country)
+        {
+            this.id = id;
+            this.first_name = first_name;
+            this.last_name = last_name;
+            this.country = country;
+        }
     }
     public class person_model
     {
