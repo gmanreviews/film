@@ -24,5 +24,16 @@ namespace film.Controllers
         {
             return View(mamo_model.get_player_mamo_team(new user(id)));
         }
+
+        public ActionResult years_dropdown()
+        {
+            return View(mamo_year_model.get_years());
+        }
+
+        public ActionResult mamo_team_member(int id = 0)
+        {
+            if (id == 0) return new EmptyResult();
+            else return View(mamo_team_model.get_mamo_team_member(id)); 
+        }
     }
 }

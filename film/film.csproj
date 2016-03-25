@@ -149,7 +149,10 @@
     <Compile Include="Models\db.cs" />
     <Compile Include="Models\general.cs" />
     <Compile Include="Models\mamo.cs" />
+    <Compile Include="Models\mamo_team.cs" />
+    <Compile Include="Models\mamo_year.cs" />
     <Compile Include="Models\movie.cs" />
+    <Compile Include="Models\moviedb.cs" />
     <Compile Include="Models\person.cs" />
     <Compile Include="Models\post.cs" />
     <Compile Include="Models\post_category.cs" />
@@ -167,6 +170,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\custom\mamo_year.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -193,13 +197,14 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\UserType\user_type_dropdown.cshtml" />
-    <Content Include="Views\User\LoginForm_old.cshtml" />
     <Content Include="Views\User\signup.cshtml" />
     <Content Include="Views\Mamo\Index.cshtml" />
     <Content Include="Views\Mamo\TopTen.cshtml" />
     <Content Include="Views\User\LoggedInDisplay.cshtml" />
     <Content Include="Views\User\LoginForm.cshtml" />
     <Content Include="Views\Mamo\Team.cshtml" />
+    <Content Include="Views\Mamo\years_dropdown.cshtml" />
+    <Content Include="Views\Mamo\mamo_team_member.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

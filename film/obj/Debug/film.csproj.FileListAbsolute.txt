@@ -46,4 +46,3 @@ D:\projects\film\film\bin\Microsoft.Threading.Tasks.Extensions.dll
 D:\projects\film\film\bin\Microsoft.Threading.Tasks.xml
 D:\projects\film\film\bin\Microsoft.Threading.Tasks.Extensions.xml
 D:\projects\film\film\bin\Microsoft.Threading.Tasks.Extensions.Desktop.xml
-D:\projects\film\film\obj\Debug\film.csprojResolveAssemblyReference.cache

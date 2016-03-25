@@ -1,0 +1,40 @@
+﻿@model film.Models.mamo
+@{ Layout = null; }
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.film_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.film_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rank)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rank)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mamo_bo_total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mamo_bo_total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mamo_bo_open)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mamo_bo_open)
+        </dd>
+
+    
+    </dl>
+</div>

@@ -9,12 +9,13 @@ namespace film.Models
 {
     public class mamo: movie
     {
-        [Display(Name = "Team ID")]
-        public int team_id { get; set; }
         [Display(Name = "Rank")]
         public int rank { get; set; }
         [Display(Name = "Team Locked")]
         public bool submitted { get; set; }
+        public string mamo_bo_total { get; set; }
+        public string mamo_bo_open { get; set; }
+        public int mamo_id { get; set; }
 
         public mamo() { }
         public mamo(int id, string film_name, string box_office_total, string box_office_opening, DateTime release_date, int rank)
@@ -89,6 +90,51 @@ namespace film.Models
             reader.Close();
             db.disconnect();
             return team;
+        }
+
+        public static bool is_there_a_game_this_year()
+        {
+            bool result = false;
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC is_there_a_game_this_year");
+            while (reader.Read())
+            {
+                result = (bool)reader["result"];
+            }
+            reader.Close();
+            db.disconnect();
+            return result;
+        }
+
+        public static bool are_there_past_games()
+        {
+            bool result = false;
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC are_there_past_games");
+            while (reader.Read())
+            {
+                result = (bool)reader["result"];
+            }
+            reader.Close();
+            db.disconnect();
+            return result;
+        }
+
+        public static bool am_i_playing(user user, mamo_year year)
+        {
+            bool result = false;
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC am_i_playing " + user.id + "," + year.year);
+            while (reader.Read())
+            {
+                result = (bool)reader["result"];
+            }
+            reader.Close();
+            db.disconnect();
+            return result;
         }
     }
 }

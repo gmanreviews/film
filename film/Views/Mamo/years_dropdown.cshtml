@@ -1,0 +1,4 @@
+﻿@model IEnumerable<film.Models.mamo_year>
+@{  Layout = null; }
+
+@Html.DropDownList("mamo_year_dropdown", Model.Select(x => new SelectListItem { Value = x.id.ToString(), Text = x.year }))
