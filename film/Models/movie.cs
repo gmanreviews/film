@@ -13,10 +13,8 @@ namespace film.Models
         [Display(Name = "Film Title")]
         public string film_name { get; set; }
         [Display(Name = "Total Box Office")]
-        //[DisplayFormat(DataFormatString = "{0:C3}")]
         public string box_office_total { get; set; }
         [Display(Name = "Opening Weekend Box Office")]
-        //[DisplayFormat(DataFormatString = "{0:C}")]
         public string box_office_opening { get; set; }
         public int release_month { get; set; }
         [Display(Name = "Release Date")]
