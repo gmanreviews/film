@@ -26,6 +26,11 @@ namespace film.Models
         {
             this.id = id;
         }
+        public movie(int id, string film_name)
+        {
+            this.id = id;
+            this.film_name = film_name;
+        }
         public movie(int id, string film_name, string box_office_total, string box_office_opening, DateTime release_date)
         {
             this.id = id;

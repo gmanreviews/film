@@ -13,6 +13,12 @@ namespace film.Models
         public bool submitted { get; set; }
         public mamo_year year { get; set; }
         public List<mamo> films { get; set; }
+
+        public mamo_team(int id, mamo_year year)
+        {
+            this.id = id;
+            this.year = year;
+        }
     }
     public class mamo_team_model
     {
@@ -97,5 +103,50 @@ namespace film.Models
             db.disconnect();
             return mamo;
         }
+        /*
+        public static mamo_team get_user_mamo_team(user user, mamo_year year)
+        {
+            mamo_team team = new mamo_team();
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC get_user_mamo_team " + user.id + "," + year.id);
+            while (reader.Read())
+            {
+                team.id = int.Parse(reader["id"].ToString());
+                team.owner = user;
+                team.year = year;
+            }
+            reader.Close();
+            db.disconnect();
+
+            if (team.id != 0)
+            { 
+                team.submitted = is_team_submitted(team);
+                team.films = get_team_films(team);
+            }
+            return team;
+        }
+
+        public static List<mamo> get_team_films(mamo_team team)
+        {
+            List <mamo> films = new List<mamo>();
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC get_team_films " + team.id);
+            while (reader.Read())
+            {
+                films.Add(new mamo(int.Parse(reader["film_id"].ToString()),
+                                   reader["name"].ToString(),
+                                   reader["box_office_total"].ToString(),
+                                   reader["box_office_opening"].ToString(),
+                                   DateTime.Now,
+                                   int.Parse(reader["rank"].ToString())));
+            }
+            reader.Close();
+            db.disconnect();
+            return films;
+
+        }
+        */
     }
 }

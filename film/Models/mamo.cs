@@ -71,12 +71,12 @@ namespace film.Models
             return movies;
         }
 
-        public static List<mamo> get_player_mamo_team(user user)
+        public static List<mamo> get_player_mamo_team(user user, mamo_year year)
         {
             List<mamo> team = new List<mamo>();
             db db = new db();
             db.connect();
-            SqlDataReader reader = db.query_db("EXEC get_player_mamo_team " + user.id);
+            SqlDataReader reader = db.query_db("EXEC get_player_mamo_team " + user.id + "," + year.id);
             while (reader.Read())
             {
                 team.Add(new mamo(int.Parse(reader["id"].ToString()),
@@ -135,6 +135,21 @@ namespace film.Models
             reader.Close();
             db.disconnect();
             return result;
+        }
+
+        public static List<movie> all_posible_films_for_mamo_game(mamo_year year)
+        {
+            List<movie> movies = new List<movie>();
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC all_posible_films_for_mamo_game " + year.id);
+            while (reader.Read())
+            {
+                movies.Add(new movie(int.Parse(reader["id"].ToString()), reader["name"].ToString()));
+            }
+            reader.Close();
+            db.disconnect();
+            return movies;
         }
     }
 }

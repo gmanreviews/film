@@ -64,7 +64,7 @@ namespace film.Models
             SqlDataReader reader = db.query_db("EXEC get_user_password " + user.id + ",'" + user.username + "'");
             while (reader.Read())
             {
-                if ((bool)reader["success"])  user.password = reader["password"].ToString();
+                if ((bool)reader["success"]) user.password = reader["password"].ToString();
             }
             reader.Close();
             db.disconnect();
@@ -148,6 +148,11 @@ namespace film.Models
         public static void logout()
         {
             general.user = new user();
+        }
+
+        public static bool am_i_logged_in()
+        {
+            return general.user.id != 0;
         }
 
     }
