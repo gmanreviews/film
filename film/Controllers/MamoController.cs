@@ -56,6 +56,14 @@ namespace film.Controllers
             return View(new mamo_team(id, new mamo_year(year)));
         }
 
+        public ActionResult myscore(int id)
+        {
+            mamo_team team = new mamo_team();
+            team.owner = new user(id);
+            team.year = new mamo_year(1);
+            return View(mamo_team_model.my_team_score(team));
+        }
+
 
     }
 }

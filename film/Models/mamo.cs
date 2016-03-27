@@ -13,9 +13,20 @@ namespace film.Models
         public int rank { get; set; }
         [Display(Name = "Team Locked")]
         public bool submitted { get; set; }
+        [Display(Name = "Predicted Gross")]
         public string mamo_bo_total { get; set; }
+        [Display(Name = "Predicted Opening")]
         public string mamo_bo_open { get; set; }
         public int mamo_id { get; set; }
+
+        [Display(Name = "Film Ranking Points")]
+        public int film_ranking_point { get; set; }
+        [Display(Name = "Gross Points")]
+        public int film_gross_points { get; set; }
+        [Display(Name = "Opening Points")]
+        public int film_opening_points { get; set; }
+        [Display(Name = "Opening + Gross Points")]
+        public int film_gross_opening_points { get; set; }
 
         public mamo() { }
         public mamo(int id, string film_name, string box_office_total, string box_office_opening, DateTime release_date, int rank)
@@ -36,6 +47,18 @@ namespace film.Models
             this.release_date = release_date;
             this.rank = rank;
             this.submitted = submitted;
+        }
+
+        public mamo(int id, string film_name, string mamo_bo_open, string mamo_bo_total, int film_ranking_point, int film_gross_points, int film_opening_points, int film_gross_opening_points)
+        {
+            this.id = id;
+            this.film_name = film_name;
+            this.mamo_bo_open = mamo_bo_open;
+            this.mamo_bo_total = mamo_bo_total;
+            this.film_ranking_point = film_ranking_point;
+            this.film_gross_points = film_gross_points;
+            this.film_opening_points = film_opening_points;
+            this.film_gross_opening_points = film_gross_opening_points;
         }
 
     }

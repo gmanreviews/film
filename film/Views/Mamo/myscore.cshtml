@@ -1,0 +1,74 @@
+﻿@model IEnumerable<film.Models.mamo>
+
+@{
+    ViewBag.Title = "myscore";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>myscore</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.film_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rank)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mamo_bo_total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mamo_bo_open)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.film_ranking_point)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.film_gross_points)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.film_opening_points)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.film_gross_opening_points)
+        </th>
+        <th>
+            Total
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.film_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mamo_bo_total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mamo_bo_open)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mamo_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.film_ranking_point)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.film_gross_points)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.film_opening_points)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.film_gross_opening_points)
+        </td>
+        <td>
+            @{ int total = item.film_ranking_point + item.film_gross_points + item.film_opening_points + item.film_gross_opening_points; }
+            @Html.Raw(total.ToString())
+        </td>
+    </tr>
+}
+
+</table>

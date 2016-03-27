@@ -208,6 +208,7 @@
     <Content Include="Views\Mamo\mamo_team_member.cshtml" />
     <Content Include="Views\Mamo\mamo_film_picker.cshtml" />
     <Content Include="Views\Mamo\mamo_team_member_create.cshtml" />
+    <Content Include="Views\Mamo\myscore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
