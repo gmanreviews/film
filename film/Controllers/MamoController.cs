@@ -56,12 +56,25 @@ namespace film.Controllers
             return View(new mamo_team(id, new mamo_year(year)));
         }
 
-        public ActionResult myscore(int id)
+        public ActionResult myscore(int id, int year = 0)
         {
             mamo_team team = new mamo_team();
             team.owner = new user(id);
-            team.year = new mamo_year(1);
+            if (year == 0) team.year = mamo_year_model.get_current_game();
+            else team.year = new mamo_year(year);
+            ViewData["year_id"] = team.year.id;
             return View(mamo_team_model.my_team_score(team));
+        }
+
+        public ActionResult scoreboard(int id = 0)
+        {
+            if (id == 0) id = mamo_year_model.get_current_game().id;
+            return View(mamo_team_model.scoreboard(new mamo_year(id)));
+        }
+
+        public ActionResult rowthreelink()
+        {
+            return View();
         }
 
 

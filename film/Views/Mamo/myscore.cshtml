@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "myscore";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int year_id = int.Parse(ViewData["year_id"].ToString());
 }
 
 <h2>myscore</h2>
@@ -66,3 +67,5 @@
 }
 
 </table>
+
+@Html.ActionLink("Back to Scoreboard", "scoreboard", new { id =  year_id})

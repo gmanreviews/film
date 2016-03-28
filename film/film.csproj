@@ -172,9 +172,36 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\custom\mamo_year.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\custom\team_building.js" />
+    <Content Include="Scripts\jquery-1.10.2_no.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.12.2.min.js" />
+    <Content Include="Scripts\jquery-1.6.min.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4\external\jquery\jquery.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Scripts\jquery-ui-1.11.4\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Scripts\jquery-ui-1.11.4\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Scripts\jquery-ui-1.11.4\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Scripts\jquery-ui-1.11.4\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Scripts\jquery-ui-1.11.4\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Scripts\jquery-ui-1.11.4\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Scripts\jquery-ui-1.11.4\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Scripts\jquery-ui-1.11.4\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Scripts\jquery-ui-1.11.4\images\ui-icons_222222_256x240.png" />
+    <Content Include="Scripts\jquery-ui-1.11.4\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Scripts\jquery-ui-1.11.4\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Scripts\jquery-ui-1.11.4\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Scripts\jquery-ui-1.11.4\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\jquery-ui-1.11.4\index.html" />
+    <Content Include="Scripts\jquery-ui-1.11.4\jquery-ui.css" />
+    <Content Include="Scripts\jquery-ui-1.11.4\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4\jquery-ui.min.css" />
+    <Content Include="Scripts\jquery-ui-1.11.4\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4\jquery-ui.structure.css" />
+    <Content Include="Scripts\jquery-ui-1.11.4\jquery-ui.structure.min.css" />
+    <Content Include="Scripts\jquery-ui-1.11.4\jquery-ui.theme.css" />
+    <Content Include="Scripts\jquery-ui-1.11.4\jquery-ui.theme.min.css" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -209,6 +236,8 @@
     <Content Include="Views\Mamo\mamo_film_picker.cshtml" />
     <Content Include="Views\Mamo\mamo_team_member_create.cshtml" />
     <Content Include="Views\Mamo\myscore.cshtml" />
+    <Content Include="Views\Mamo\scoreboard.cshtml" />
+    <Content Include="Views\Mamo\rowthreelink.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -32,6 +32,11 @@ namespace film.Models
             this.last_name = last_name;
             this.country = country;
         }
+        public person (string first_name, string last_name)
+        {
+            this.first_name = first_name;
+            this.last_name = last_name;
+        }
     }
     public class person_model
     {

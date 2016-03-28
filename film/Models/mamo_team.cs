@@ -21,6 +21,13 @@ namespace film.Models
             this.id = id;
             this.year = year;
         }
+        public mamo_team(int id, user owner, mamo_year year, int score)
+        {
+            this.id = id;
+            this.owner = owner;
+            this.year = year;
+            this.score = score;
+        }
     }
     public class mamo_team_model
     {
@@ -109,6 +116,24 @@ namespace film.Models
         public static int my_score(mamo_team team)
         {
             return 0;
+        }
+
+        public static List<mamo_team> scoreboard(mamo_year year)
+        {
+            List<mamo_team> teams = new List<mamo_team>();
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC scoreboard " + year.id);
+            while (reader.Read())
+            {
+                teams.Add(new mamo_team(int.Parse(reader["team_id"].ToString()),
+                                        new user(int.Parse(reader["user_id"].ToString()), new person(reader["first_name"].ToString(), reader["last_name"].ToString())),
+                                        year,
+                                        int.Parse(reader["total_points"].ToString())));
+            }
+            reader.Close();
+            db.disconnect();
+            return teams;
         }
 
         public static List<mamo> my_team_score(mamo_team team)

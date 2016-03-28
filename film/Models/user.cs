@@ -10,7 +10,7 @@ namespace film.Models
     public class user
     {
         [Required]
-        public int id {get; set;}
+        public int id { get; set; }
         [Display(Name = "Username")]
         [Required]
         public string username { get; set; }
@@ -37,6 +37,11 @@ namespace film.Models
             this.username = username;
             this.password = password;
             this.email = email;
+            this.person = person;
+        }
+        public user(int id, person person)
+        {
+            this.id = id;
             this.person = person;
         }
     }
