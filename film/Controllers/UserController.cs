@@ -31,14 +31,14 @@ namespace film.Controllers
             if (user_model.login_authenticate(user))
             {
                 general.user = user_model.get_user(user);
-                return RedirectToAction("Index", "Home");
             }
             else
             {
                 ModelState.AddModelError("error.error", "Bad login");
                 user.password = null;
-                return View(user);
+                //return View(user);
             }
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult signup()

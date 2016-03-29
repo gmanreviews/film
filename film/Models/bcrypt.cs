@@ -14,7 +14,13 @@ namespace film.Models
 
         public static bool test_password(string password, string hashedpassword)
         {
-            return BCrypt.Net.BCrypt.Verify(password, hashedpassword);
+            try {
+                return BCrypt.Net.BCrypt.Verify(password, hashedpassword);
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

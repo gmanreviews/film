@@ -44,6 +44,5 @@ D:\projects\film\film\bin\System.Web.WebPages.Deployment.xml
 D:\projects\film\film\bin\System.Web.WebPages.Razor.xml
 D:\projects\film\film\bin\Antlr3.Runtime.pdb
 D:\projects\film\film\bin\Newtonsoft.Json.xml
-D:\projects\film\film\obj\Release\film.csprojResolveAssemblyReference.cache
 D:\projects\film\film\obj\Release\film.dll
 D:\projects\film\film\obj\Release\film.pdb

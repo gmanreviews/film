@@ -61,24 +61,10 @@ namespace film.Models
             db.disconnect();
             return users;
         }
-
-        private static string get_password(user user)
-        {
-            db db = new db();
-            db.connect();
-            SqlDataReader reader = db.query_db("EXEC get_user_password " + user.id + ",'" + user.username + "'");
-            while (reader.Read())
-            {
-                if ((bool)reader["success"]) user.password = reader["password"].ToString();
-            }
-            reader.Close();
-            db.disconnect();
-            return user.password;
-        }
-
+        
         public static bool login_authenticate(user user)
         {
-            if (user.password == null || get_password(user) == null) return false;
+            if (user.password == null) return false;
             else return bcrypt.test_password(user.password, get_hashed_password(user));
         }
 

@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="film_test_local-Web.config Connection String" description="film_test_local Connection String used in web.config by the application to access the database." defaultValue="Server=DESKTOP-8146CH7\SQLEXPRESS;Database=film;User Id=film;Password=film;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="D:\\projects\\film\\film\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='film_test_local']/@connectionString" />
-  </parameter>
-</parameters>
