@@ -1,0 +1,59 @@
+﻿@model IEnumerable<film.Models.mamo>
+
+@{
+    ViewBag.Title = "Team";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Team</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.film_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.box_office_total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.box_office_opening)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.release_month)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.release_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rank)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.film_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.box_office_total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.box_office_opening)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.release_month)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.release_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rank)
+        </td>
+    </tr>
+}
+
+</table>

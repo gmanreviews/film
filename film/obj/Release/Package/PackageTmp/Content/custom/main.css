@@ -1,0 +1,42 @@
+﻿.loginform{
+    position: absolute;
+    right: 19%;
+    top: 11px;
+}
+
+.loginform input[type="text"], .loginform input[type="password"] {
+    width: 130px;
+    float: left;
+    margin-left:2px;
+}
+
+.user-details{
+    color:white;
+}
+
+.loginform span, .loginform p {
+    margin-top:10px;
+    float:left;
+    margin-left:10px;
+}
+
+.my-team-select{
+    margin-left:auto;
+    margin-right:auto;
+    width:40%;
+    height:50px;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.my-team-select select, .my-team-select div{
+    float:left;
+    margin-left:4px;
+}
+
+.my-team-select select{
+    width:80px;
+    height:32.5px;
+    border-radius: 3px;
+    text-indent:12px;
+}

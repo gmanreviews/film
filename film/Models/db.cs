@@ -8,8 +8,11 @@ namespace film.Models
 {
     public class db
     {
+#if DEBUG
         private SqlConnection connection = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["film_test_local"].ConnectionString);
-
+#else 
+        private SqlConnection connection = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["film_production"].ConnectionString);
+#endif
         public db() { }
 
         public bool connect()

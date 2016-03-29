@@ -1,0 +1,11 @@
+﻿@model IEnumerable<film.Models.mamo_year>
+@{  Layout = null; }
+
+@using (Html.BeginForm("years_dropdown", "mamo", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.DropDownList("mamo_year_dropdown", Model.Select(x => new SelectListItem { Value = x.id.ToString(), Text = x.year }))
+    <div>
+        <input type="submit" value="Go To Team" class="btn btn-default" />
+    </div>
+}
