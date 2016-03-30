@@ -1,0 +1,26 @@
+﻿@model film.Models.mamo
+
+@{ Layout = null; }
+
+<tr class="team_member">
+    <td class="rank">
+        @Html.TextBoxFor(Model => Model.rank)
+    </td>
+    <td>
+        @{ Html.RenderAction("mamo_film_picker", "Mamo", new { id = int.Parse(ViewData["team_id"].ToString()) }); }
+    </td>
+    <td>
+        @Html.TextBoxFor(Model => Model.mamo_bo_total)
+    </td>
+    <td>
+        @Html.TextBoxFor(Model => Model.mamo_bo_open)
+    </td>
+    <td>
+        @Html.DisplayFor(Model => Model.release_date, new { @class = "release_date" })
+    </td>
+    <td class="buttons">
+        <input type="button" class="move_up" value="Move Up" />
+        <input type="button" class="move_down" value="Move Down" />
+        <input type="button" class="remove_film" value="Delete Film" />
+    </td>
+</tr>

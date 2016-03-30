@@ -16,9 +16,19 @@ namespace film.Models
         public int score { get; set; }
 
         public mamo_team() { }
+        public mamo_team(int id)
+        {
+            this.id = id;
+        }
         public mamo_team(int id, mamo_year year)
         {
             this.id = id;
+            this.year = year;
+        }
+        public mamo_team(int id, user owner, mamo_year year)
+        {
+            this.id = id;
+            this.owner = owner;
             this.year = year;
         }
         public mamo_team(int id, user owner, mamo_year year, int score)
@@ -31,6 +41,45 @@ namespace film.Models
     }
     public class mamo_team_model
     {
+        public static mamo_team get_mamo_team(int id)
+        {
+            mamo_team team = new mamo_team(id);
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC get_mamo_team " + id);
+            while (reader.Read())
+            {
+                team = new mamo_team(id,
+                                    new user(int.Parse(reader["user_id"].ToString()), new person(reader["first_name"].ToString(), reader["last_name"].ToString())),
+                                    new mamo_year(int.Parse(reader["year_id"].ToString()), reader["year"].ToString()));
+            }
+            reader.Close();
+            db.disconnect();
+            team.films = get_mamo_team_films(team);
+            return team;
+
+        }
+
+        private static List<mamo> get_mamo_team_films(mamo_team team)
+        {
+            team.films = new List<mamo>();
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC get_mamo_team_films " + team.id);
+            while (reader.Read())
+            {
+                team.films.Add(new mamo(int.Parse(reader["id"].ToString()), 
+                                        reader["name"].ToString(), 
+                                        reader["box_office_opening"].ToString(), 
+                                        reader["box_office_total"].ToString(), 
+                                        int.Parse(reader["rank"].ToString()), 
+                                        DateTime.Parse(reader["release_date"].ToString())));
+            }
+            reader.Close();
+            db.disconnect();
+            return team.films;
+        }
+
         public static void create_team(mamo_team team)
         {
             db db = new db();
@@ -203,51 +252,6 @@ namespace film.Models
             if (rank_correct && (uint)(actual_gross - pred_gross) <= 5 && (uint)(actual_open - pred_open) <= 1) point += 10;
             return point;
         }
-
-        /*
-        public static mamo_team get_user_mamo_team(user user, mamo_year year)
-        {
-            mamo_team team = new mamo_team();
-            db db = new db();
-            db.connect();
-            SqlDataReader reader = db.query_db("EXEC get_user_mamo_team " + user.id + "," + year.id);
-            while (reader.Read())
-            {
-                team.id = int.Parse(reader["id"].ToString());
-                team.owner = user;
-                team.year = year;
-            }
-            reader.Close();
-            db.disconnect();
-
-            if (team.id != 0)
-            { 
-                team.submitted = is_team_submitted(team);
-                team.films = get_team_films(team);
-            }
-            return team;
-        }
-
-        public static List<mamo> get_team_films(mamo_team team)
-        {
-            List <mamo> films = new List<mamo>();
-            db db = new db();
-            db.connect();
-            SqlDataReader reader = db.query_db("EXEC get_team_films " + team.id);
-            while (reader.Read())
-            {
-                films.Add(new mamo(int.Parse(reader["film_id"].ToString()),
-                                   reader["name"].ToString(),
-                                   reader["box_office_total"].ToString(),
-                                   reader["box_office_opening"].ToString(),
-                                   DateTime.Now,
-                                   int.Parse(reader["rank"].ToString())));
-            }
-            reader.Close();
-            db.disconnect();
-            return films;
-
-        }
-        */
+        
     }
 }

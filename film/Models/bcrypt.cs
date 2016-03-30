@@ -9,11 +9,14 @@ namespace film.Models
     {
         public static string encrypt(string password)
         {
-            return BCrypt.Net.BCrypt.HashString(password);
+            return password;
+            //return BCrypt.Net.BCrypt.HashString(password);
         }
 
         public static bool test_password(string password, string hashedpassword)
         {
+            return password == hashedpassword;
+            /*
             try {
                 return BCrypt.Net.BCrypt.Verify(password, hashedpassword);
             }
@@ -21,6 +24,7 @@ namespace film.Models
             {
                 return false;
             }
+            */
         }
     }
 }

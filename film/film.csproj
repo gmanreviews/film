@@ -211,6 +211,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="sql\database.sql" />
+    <Content Include="sql\version1.sql" />
+    <Content Include="sql\version2.sql" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -239,6 +242,7 @@
     <Content Include="Views\Mamo\myscore.cshtml" />
     <Content Include="Views\Mamo\scoreboard.cshtml" />
     <Content Include="Views\Mamo\rowthreelink.cshtml" />
+    <Content Include="Views\Mamo\new_team_member.cshtml" />
     <None Include="Web.film.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

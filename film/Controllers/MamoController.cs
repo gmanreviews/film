@@ -22,8 +22,13 @@ namespace film.Controllers
 
         public ActionResult Team(int id, int year = 0)
         {
-            if (year == 0) year = mamo_year_model.get_current_game().id;
-            return View(mamo_model.get_player_mamo_team(new user(id), new mamo_year(year)));
+            return View(mamo_team_model.get_mamo_team(id));
+        }
+
+        public ActionResult new_team_member(int id = 0)
+        {
+            ViewData["team_id"] = id;
+            return View(new mamo());
         }
 
         public ActionResult years_dropdown()
@@ -44,10 +49,10 @@ namespace film.Controllers
             else return View(mamo_team_model.get_mamo_team_member(id)); 
         }
 
-        public ActionResult mamo_film_picker(int year = 0)
+        public ActionResult mamo_film_picker(int id = 0, int year = 0)
         {
             if (year == 0) year = mamo_year_model.get_current_game().id;
-            return View(mamo_model.all_posible_films_for_mamo_game(new mamo_year(year)));
+            return View(mamo_model.all_posible_films_for_mamo_game(new mamo_team(id, new mamo_year(year))));
         }
 
         public ActionResult mamo_team_member_create(int id, int year = 0)
@@ -76,7 +81,6 @@ namespace film.Controllers
         {
             return View();
         }
-
 
     }
 }

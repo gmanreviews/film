@@ -60,6 +60,15 @@ namespace film.Models
             this.film_opening_points = film_opening_points;
             this.film_gross_opening_points = film_gross_opening_points;
         }
+        public mamo(int id, string film_name, string mamo_bo_open, string mamo_bo_total, int rank, DateTime release_date)
+        {
+            this.id = id;
+            this.film_name = film_name;
+            this.mamo_bo_open = mamo_bo_open;
+            this.mamo_bo_total = mamo_bo_total;
+            this.rank = rank;
+            this.release_date = release_date;
+        }
 
     }
 
@@ -160,12 +169,12 @@ namespace film.Models
             return result;
         }
 
-        public static List<movie> all_posible_films_for_mamo_game(mamo_year year)
+        public static List<movie> all_posible_films_for_mamo_game(mamo_team team)
         {
             List<movie> movies = new List<movie>();
             db db = new db();
             db.connect();
-            SqlDataReader reader = db.query_db("EXEC all_posible_films_for_mamo_game " + year.id);
+            SqlDataReader reader = db.query_db("EXEC all_posible_films_for_mamo_game " + team.id + "," + team.year.id);
             while (reader.Read())
             {
                 movies.Add(new movie(int.Parse(reader["id"].ToString()), reader["name"].ToString()));
