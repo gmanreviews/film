@@ -25,11 +25,20 @@ namespace film.Controllers
             return View(mamo_team_model.get_mamo_team(id));
         }
 
+        [HttpPost]
+        public ActionResult Team(mamo_team team)
+        {
+            int i = 0;
+            return View();
+        }
+
         public ActionResult new_team_member(int id = 0)
         {
             ViewData["team_id"] = id;
             return View(new mamo());
         }
+
+        
 
         public ActionResult years_dropdown()
         {

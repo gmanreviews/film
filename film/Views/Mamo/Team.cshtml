@@ -41,32 +41,9 @@
             <div class="films">
             @foreach (var item in Model.films)
             {
-                <tr class="team_member">
-                    <td class="rank">
-                        @Html.DisplayFor(modelItem => item.rank)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.film_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.mamo_bo_total)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.mamo_bo_open)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.release_date)
-                    </td>
-
-                    @if (!Model.submitted)
-                    {
-                        <td class="buttons">
-                            <input type="button" class="move_up" value="Move Up" />
-                            <input type="button" class="move_down" value="Move Down" />
-                            <input type="button" class="remove_film" value="Delete Film" />
-                        </td>
-                    }
-                </tr>
+                <div class="nothing">
+                    @{ Html.RenderPartial("new_team_member", item); }
+                </div>
             }
             </div>
         </table>

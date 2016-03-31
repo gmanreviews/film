@@ -47,6 +47,10 @@
     <Reference Include="BCrypt.Net">
       <HintPath>C:\Users\andre\Downloads\bcryptnet.build109\BCrypt.Net.dll</HintPath>
     </Reference>
+    <Reference Include="BeginCollectionItem, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BeginCollectionItem.1.2.1.0\lib\net35\BeginCollectionItem.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -243,6 +247,7 @@
     <Content Include="Views\Mamo\scoreboard.cshtml" />
     <Content Include="Views\Mamo\rowthreelink.cshtml" />
     <Content Include="Views\Mamo\new_team_member.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
     <None Include="Web.film.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

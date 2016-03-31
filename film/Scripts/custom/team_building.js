@@ -14,7 +14,9 @@
         else {
             var prev_tr = $(this_tr).prev(".team_member");
             $(this_tr).find(".rank").text(decrement_rank(this_tr));
+            $(this_tr).find(".hidden_rank").val(parseInt($(this_tr).find(".rank").text().trim()));
             $(prev_tr).find(".rank").text(increment_rank(prev_tr));
+            $(prev_tr).find(".hidden_rank").val(parseInt($(prev_tr).find(".rank").text().trim()));
             $(prev_tr).remove();
             $(prev_tr).insertAfter(this_tr);
         }
@@ -35,7 +37,9 @@
         else {
             var next_tr = $(this_tr).next(".team_member");
             $(next_tr).find(".rank").text(decrement_rank(next_tr));
+            $(next_tr).find(".hidden_rank").val(parseInt($(next_tr).find(".rank").text().trim()));
             $(this_tr).find(".rank").text(increment_rank(this_tr));
+            $(this_tr).find(".hidden_rank").val(parseInt($(this_tr).find(".rank").text().trim()));
             $(this_tr).remove();
             $(this_tr).insertAfter(next_tr);
         }
