@@ -97,3 +97,63 @@ BEGIN
 	AND mt.film_id IS NULL
 	ORDER BY release_date;
 END
+GO
+/****** Object:  StoredProcedure [dbo].[is_this_my_team]    Script Date: 2/4/2016 1:32:51 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[is_this_my_team]
+	-- Add the parameters for the stored procedure here
+	@team_id int,
+	@user_id int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT (CASE WHEN COUNT(*) = 1 THEN CAST (1 as bit) ELSE CAST(0 as bit) END) as result
+	FROM mamo_team_owner WHERE id = @team_id AND [user_id] = @user_id;
+END
+GO
+/****** Object:  StoredProcedure [dbo].[create_team]    Script Date: 3/4/2016 3:34:08 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[create_team]
+	-- Add the parameters for the stored procedure here
+	@user_id int,
+	@year_id int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	IF NOT EXISTS (SELECT * FROM mamo_team_owner WHERE [user_id] = @user_id AND mamo_year_id = @year_id)
+	BEGIN
+		INSERT INTO mamo_team_owner([user_id],mamo_year_id)
+		VALUES (@user_id, @year_id);
+
+		SELECT @@IDENTITY as id;
+	END
+	ELSE
+	BEGIN
+		SELECT id FROM mamo_team_owner WHERE [user_id] = @user_id AND mamo_year_id = @year_id;
+	END
+
+END

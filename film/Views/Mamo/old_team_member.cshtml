@@ -1,7 +1,9 @@
 ﻿@model film.Models.mamo
 
 @{ Layout = null; }
+
 <div>
+
     @using (Html.BeginCollectionItem("team.films"))
     {
         <tr class="team_member">
@@ -63,5 +65,5 @@
                 </td>
             }
         </tr>
-                            }
+    }
 </div>

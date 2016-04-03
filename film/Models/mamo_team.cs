@@ -52,12 +52,28 @@ namespace film.Models
                 team = new mamo_team(id,
                                     new user(int.Parse(reader["user_id"].ToString()), new person(reader["first_name"].ToString(), reader["last_name"].ToString())),
                                     new mamo_year(int.Parse(reader["year_id"].ToString()), reader["year"].ToString()));
+                team.submitted = (bool)reader["locked"];
             }
             reader.Close();
             db.disconnect();
             team.films = get_mamo_team_films(team);
             return team;
 
+        }
+
+        public static mamo_team get_mamo_team_by_user_year(user owner, mamo_year year)
+        {
+            mamo_team team = new mamo_team();
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC get_mamo_team_by_user_year " + owner.id  + "," + year.id);
+            while (reader.Read())
+            {
+                team.id = int.Parse(reader["id"].ToString());
+            }
+            reader.Close();
+            db.disconnect();
+            return team;
         }
 
         private static List<mamo> get_mamo_team_films(mamo_team team)
@@ -82,10 +98,12 @@ namespace film.Models
 
         public static void create_team(mamo_team team)
         {
+            team.films = clear_mamo(team.films);
+
             db db = new db();
             db.connect();
-            SqlDataReader reader = db.query_db("EXEC create_team " + team.owner.id + ",'"
-                                                                   + team.year.year + "'");
+            SqlDataReader reader = db.query_db("EXEC create_team " + team.owner.id + ","
+                                                                   + team.year.id);
             while (reader.Read())
             {
                 team.id = int.Parse(reader["id"].ToString());
@@ -97,6 +115,15 @@ namespace film.Models
             if (team.submitted) submit_team(team);
         }
 
+        private static List<mamo> clear_mamo(List<mamo> mamo)
+        {
+            for(int x = mamo.Count-1; x >= 0; x--)
+            {
+                if (mamo[x].id == 0) mamo.RemoveAt(x);
+            }
+            return mamo;
+        }
+
         public static void submit_team(mamo_team team)
         {
             db db = new db();
@@ -104,7 +131,7 @@ namespace film.Models
             SqlDataReader reader = db.query_db("EXEC submit_team " + team.id);
             reader.Close();
             db.disconnect();
-            add_mamo_team(team);
+            //add_mamo_team(team);
         }
 
         public static bool is_team_submitted(mamo_team team)
@@ -124,10 +151,73 @@ namespace film.Models
 
         private static void add_mamo_team(mamo_team team)
         {
-            foreach(mamo film in team.films)
+            foreach (mamo film in team.films)
             {
                 add_team_member(team, film);
             }
+
+            List<mamo> current_team = team.films;
+            List<mamo> prev_team = get_mamo_team_films(team);
+            List<mamo> delete_team = new List<mamo>();
+
+            foreach(mamo prev_film in prev_team)
+            {
+                int count = current_team.Count;
+                int iter = 0;
+                foreach(mamo current_film in current_team)
+                {
+                    iter++;
+                    if (current_film.id == prev_film.id) break;
+                    else if (iter == count) delete_team.Add(prev_film); 
+                }
+            }
+
+            delete_mamo_team(team, delete_team);
+            
+        }
+
+        private static void delete_mamo_team(mamo_team team, List<mamo> films)
+        {
+            foreach(mamo film in films)
+            {
+                delete_mamo_team_member(team, film);
+            }
+        }
+
+        private static void delete_mamo_team_member(mamo_team team, mamo film)
+        {
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC delete_mamo_team_member " + team.id + "," + film.id);
+            reader.Close();
+            db.disconnect();
+            
+        }
+
+        public static bool update_mamo_team_member(mamo_team team, mamo film)
+        {
+            bool result = is_this_my_team(team);
+            if (result) {
+                add_team_member(team, film);
+            }
+            return result;
+        }
+
+        public static bool is_this_my_team(mamo_team team)
+        {
+            bool result = false;
+            if (general.user.id != 0) { 
+                db db = new db();
+                db.connect();
+                SqlDataReader reader = db.query_db("EXEC is_this_my_team " + team.id + "," + general.user.id);
+                while (reader.Read())
+                {
+                    result = (bool)reader["result"];
+                }
+                reader.Close();
+                db.disconnect();
+            }
+            return result;
         }
 
         public static void add_team_member(mamo_team team, mamo film)
@@ -136,7 +226,7 @@ namespace film.Models
             db.connect();
             SqlDataReader reader = db.query_db("EXEC add_team_member " + team.id + "," 
                                                                        + film.id + ","
-                                                                       + film.rank + ","
+                                                                       + film.rank + ",'"
                                                                        + film.mamo_bo_open + "','"
                                                                        + film.mamo_bo_total + "'");
             reader.Close();

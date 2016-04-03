@@ -4,53 +4,82 @@
     ViewBag.Title = "signup";
 }
 
-<h2>signup</h2>
+@section cssjs { }
 
-@{ 
-    using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+<h2>Sign Up Form</h2>
 
-        <div class="form-horizontal">
-            <h4>user</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    @Html.DisplayNameFor(model => model.username)
-                    @Html.TextBoxFor(model => model.username)
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="row">
+                    <div class="col-md-2">
+                        @Html.DisplayNameFor(model => model.username)
+                    </div>
+                    @Html.TextBoxFor(model => model.username, new { @class = "form-control col-md-2 col-xs-7 text-box single-line" })
                     @Html.ValidationMessageFor(model => model.username)
-                    <br />
-                    @Html.DisplayNameFor(model => model.password)
-                    @Html.PasswordFor(model => model.password)
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-2">
+                        @Html.DisplayNameFor(model => model.password)
+                    </div>
+                    @Html.PasswordFor(model => model.password, new { @class = "form-control col-md-2 col-xs-7 text-box single-line" })
                     @Html.ValidationMessageFor(model => model.password)
+                    </div>
                     <br />
-                    @Html.DisplayNameFor(model => model.password2)
-                    @Html.PasswordFor(model => model.password2)
+                <div class="row">
+                    <div class="col-md-2">
+                        @Html.DisplayNameFor(model => model.password2)
+                    </div>
+                    @Html.PasswordFor(model => model.password2, new { @class = "form-control col-md-2 col-xs-7 text-box single-line" })
                     @Html.ValidationMessageFor(model => model.password2)
-                    <br />
-                    @Html.DisplayNameFor(model => model.person.first_name)
-                    @Html.TextBoxFor(model => model.person.first_name)
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-2">
+                        @Html.DisplayNameFor(model => model.person.first_name)
+                    </div>
+                    @Html.TextBoxFor(model => model.person.first_name, new { @class = "form-control col-md-2 col-xs-7 text-box single-line" })
                     @Html.ValidationMessageFor(model => model.person.first_name)
-                    <br />
-                    @Html.DisplayNameFor(model => model.person.last_name)
-                    @Html.TextBoxFor(model => model.person.last_name)
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-2">
+                        @Html.DisplayNameFor(model => model.person.last_name)
+                    </div>
+                    @Html.TextBoxFor(model => model.person.last_name, new { @class = "form-control col-md-2 col-xs-7 text-box single-line" })
                     @Html.ValidationMessageFor(model => model.person.last_name)
-                    <br />
-                    @Html.DisplayNameFor(model => model.email)
-                    @Html.TextBoxFor(model => model.email)
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-2">
+                        @Html.DisplayNameFor(model => model.email)
+                    </div>
+                    @Html.TextBoxFor(model => model.email, new { @class = "form-control col-md-2 col-xs-7 text-box single-line" })
                     @Html.ValidationMessageFor(model => model.email)
-                    <br />
-                    @Html.DisplayNameFor(model => model.person.country)
-                    @Html.TextBoxFor(model => model.person.country)
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-2">
+                        @Html.DisplayNameFor(model => model.person.country)
+                    </div>
+                    @Html.TextBoxFor(model => model.person.country, new { @class = "form-control col-md-2 col-xs-7 text-box single-line" })
                     @Html.ValidationMessageFor(model => model.person.country)
-                    <br />
-                    @Html.DisplayNameFor(model => model.user_type.type_desc)
-                    @{ //Html.RenderAction("user_type_dropdown", "usertype");}
+                </div>
+                <br />
+                <div class="row">
+                    <!--Html.DisplayNameFor(model => model.user_type.type_desc)-->
                     <input type="submit" value="Create" class="btn btn-default" />
                 </div>
             </div>
         </div>
-    }
+    </div>
 }
+
 

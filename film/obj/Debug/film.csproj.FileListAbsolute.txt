@@ -44,7 +44,7 @@ D:\projects\film\film\bin\System.Web.WebPages.Deployment.xml
 D:\projects\film\film\bin\System.Web.WebPages.Razor.xml
 D:\projects\film\film\bin\Antlr3.Runtime.pdb
 D:\projects\film\film\bin\Newtonsoft.Json.xml
-D:\projects\film\film\obj\Debug\film.csprojResolveAssemblyReference.cache
 D:\projects\film\film\obj\Debug\film.dll
 D:\projects\film\film\obj\Debug\film.pdb
 D:\projects\film\film\bin\BeginCollectionItem.dll
+D:\projects\film\film\obj\Debug\film.csprojResolveAssemblyReference.cache

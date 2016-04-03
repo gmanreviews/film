@@ -172,6 +172,7 @@ namespace film.Models
         public static List<movie> all_posible_films_for_mamo_game(mamo_team team)
         {
             List<movie> movies = new List<movie>();
+            movies.Add(new movie());
             db db = new db();
             db.connect();
             SqlDataReader reader = db.query_db("EXEC all_posible_films_for_mamo_game " + team.id + "," + team.year.id);

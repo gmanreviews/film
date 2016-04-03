@@ -248,13 +248,13 @@
     <Content Include="Views\Mamo\rowthreelink.cshtml" />
     <Content Include="Views\Mamo\new_team_member.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
+    <Content Include="Views\Mamo\old_team_member.cshtml" />
     <None Include="Web.film.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\DataCollection\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -1,4 +1,4 @@
 ﻿@model IEnumerable<film.Models.movie>
 @{ Layout = null; }
 
-@Html.DropDownList("film_dropdown", Model.Select(x => new SelectListItem { Value = x.id.ToString(), Text = x.film_name }))
+@Html.DropDownList("film_dropdown", Model.Select(x => new SelectListItem { Value = x.id.ToString(), Text = x.film_name }), new { @class= "film_picker" })

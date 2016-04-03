@@ -95,6 +95,21 @@ namespace film.Models
             db.disconnect();
             return movie.id;
         }
+
+        public static DateTime get_movie_release_date(movie movie)
+        {
+            DateTime date = new DateTime();
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC get_movie_release_date " + movie.id);
+            while (reader.Read())
+            {
+                date = DateTime.Parse(reader["release_date"].ToString());
+            }
+            reader.Close();
+            db.disconnect();
+            return date;
+        }
     }
 
 }
