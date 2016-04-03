@@ -1,0 +1,67 @@
+﻿@model film.Models.mamo
+
+@{ Layout = null; }
+<div>
+    @using (Html.BeginCollectionItem("team.films"))
+    {
+        <tr class="team_member">
+            @Html.HiddenFor(Model => Model.id, new { @class = "mamo_film_id" })
+            @Html.HiddenFor(Model => Model.rank, new { @class = "hidden_rank" })
+            <td class="rank">
+                @Html.DisplayFor(Model => Model.rank)
+            </td>
+            <td>
+                @if (Model.submitted)
+                {
+                    <div>
+                        @Html.DisplayFor(Model => Model.film_name)
+                    </div>
+                }
+                else {
+                    <div>
+                        @{ Html.RenderAction("mamo_film_picker", "Mamo", new { id = int.Parse(ViewData["team_id"].ToString()) }); }
+                    </div>
+                            }
+            </td>
+            <td>
+                @if (Model.submitted)
+                {
+                    <div>
+                        @Html.DisplayFor(Model => Model.mamo_bo_total)
+                    </div>
+                }
+                else {
+                    <div>
+                        @Html.TextBoxFor(Model => Model.mamo_bo_total, new { @class = "box-office total" })
+                    </div>
+                }
+            </td>
+            <td>
+                @if (Model.submitted)
+                {
+                    <div>
+                        @Html.DisplayFor(Model => Model.mamo_bo_open)
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        @Html.TextBoxFor(Model => Model.mamo_bo_open, new { @class = "box-office open" })
+                    </div>
+                }
+
+            </td>
+            <td class="release_date">
+                @Html.DisplayFor(Model => Model.release_date)
+            </td>
+            @if (!Model.submitted)
+                {
+                <td class="buttons">
+                    <input type="button" class="move_up" value="Move Up" />
+                    <input type="button" class="move_down" value="Move Down" />
+                    <input type="button" class="remove_film" value="Delete Film" />
+                </td>
+            }
+        </tr>
+                            }
+</div>

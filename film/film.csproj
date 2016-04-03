@@ -151,6 +151,7 @@
     <Compile Include="Models\bcrypt.cs" />
     <Compile Include="Models\curl.cs" />
     <Compile Include="Models\db.cs" />
+    <Compile Include="Models\error.cs" />
     <Compile Include="Models\general.cs" />
     <Compile Include="Models\mamo.cs" />
     <Compile Include="Models\mamo_team.cs" />

@@ -1,3 +1,5 @@
 ﻿@model IEnumerable<film.Models.user_type>
 
+@{ Layout = null; }
+
 @Html.DropDownList("user_type_dropdown", Model.Select(x => new SelectListItem { Value = x.id.ToString(), Text = x.type_desc}))

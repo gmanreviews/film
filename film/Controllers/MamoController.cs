@@ -33,8 +33,11 @@ namespace film.Controllers
 
         public ActionResult Team(int id, int year = 0)
         {
-            ViewData["editable"] = (!mamo_team_model.is_team_submitted(new mamo_team(id)) && mamo_team_model.is_this_my_team(new mamo_team(id)));
-            return View(mamo_team_model.get_mamo_team(id));
+            if (mamo_team_model.is_this_my_team(new mamo_team(id)) && mamo_team_model.is_team_submitted(new mamo_team(id))){
+                ViewData["editable"] = (!mamo_team_model.is_team_submitted(new mamo_team(id)) && mamo_team_model.is_this_my_team(new mamo_team(id)));
+                return View(mamo_team_model.get_mamo_team(id));
+            }
+            else return RedirectToAction("Index", "Mamo", new { error = "This is not your team" });
         }
 
         [HttpPost]

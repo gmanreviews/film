@@ -6,6 +6,7 @@
     @Html.AntiForgeryToken()
     @Html.DropDownList("mamo_year_dropdown", Model.Select(x => new SelectListItem { Value = x.id.ToString(), Text = x.year }))
     <div>
-        <input type="submit" value="Go To Team" class="btn btn-default" />
+        <input type="submit" value="Go To Team" class="btn btn-default" name="team" />
+        <input type="submit" value="Go To Scoreboard" class="btn btn-default" name="scoreboard" />
     </div>
 }

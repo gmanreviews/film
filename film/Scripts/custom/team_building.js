@@ -101,6 +101,14 @@ function clear_tr(tr) {
     $(tr).find(".release_date").text("");
 }
 
+function clean_up_rankings() {
+    $(".team_member").each(function () {
+        if ($(this).find(".mamo_film_id").val() == 0) {
+            
+        }
+    });
+}
+
 function get_film_release_date(film_id) {
     var date = "";
     $.ajax({

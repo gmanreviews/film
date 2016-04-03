@@ -1,59 +1,101 @@
-﻿@model IEnumerable<film.Models.mamo>
+﻿@model film.Models.mamo_team
 
 @{
     ViewBag.Title = "Team";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Team</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.film_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.box_office_total)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.box_office_opening)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.release_month)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.release_date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.rank)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.film_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.box_office_total)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.box_office_opening)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.release_month)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.release_date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.rank)
-        </td>
-    </tr>
+@section cssjs {
+    <script src="~/Scripts/custom/team_building.js"></script>
 }
 
-</table>
+<h2>Team @Html.Raw(Model.year.year)</h2>
+@if (Model.submitted)
+{
+    <span>This is final and can't be edited</span>
+}
+else
+{
+    <span>This team is in draft</span>
+}
+
+@using (Html.BeginForm()) {
+    
+    @Html.HiddenFor(Model => Model.id, new { @class = "team_id"})
+    @Html.HiddenFor(Model => Model.year.id)
+    @Html.HiddenFor(Model => Model.owner.id)
+
+
+    <table class="table">
+        <tr>
+            <th>
+                Ranking
+            </th>
+            <th>
+                Film Name
+            </th>
+            <th>
+                Predicted Total
+            </th>
+            <th>
+                Predicted Opening
+            </th>
+            <th>
+                Release Date
+            </th>
+            @if (!Model.submitted)
+            {
+                <th></th>
+            }
+        </tr>
+        <div class="films">
+        @if (Model.submitted)
+        {
+            foreach (var item in Model.films)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.rank)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.film_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.mamo_bo_total)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.mamo_bo_open)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.release_date)
+                    </td>
+                </tr>
+            }
+        }
+        else {
+            int count = 0;
+            foreach (var item in Model.films)
+            {
+                count++;
+                <div class="nothing">
+                    @{ Html.RenderAction("old_team_member", "Mamo", new { id = Model.id, film = item }); }
+                </div>
+            }
+            while (count < 10)
+            {
+                count++;
+                Html.RenderAction("new_team_member", "Mamo", new { id = Model.id });
+            }
+        }
+        </div>
+    </table>
+        
+    if(!Model.submitted)
+    {
+        <!--<input type="button" class="add_film" value="Add Film" />-->
+        <input type="submit" class="update_films" value="Update Draft" />
+        <input type="button" class="lock" value="Lock Films" />
+    }
+
+}
+
