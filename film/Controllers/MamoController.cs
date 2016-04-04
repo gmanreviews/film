@@ -133,7 +133,7 @@ namespace film.Controllers
         public ActionResult scoreboard(int id = 0)
         {
             if (id == 0) id = mamo_year_model.get_current_game().id;
-            return View(mamo_team_model.scoreboard(new mamo_year(id)));
+            return View(mamo_team_model.scoreboard(new mamo_year(id)).OrderBy(x => x.score));
         }
 
         public ActionResult rowthreelink()
