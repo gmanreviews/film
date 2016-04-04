@@ -143,6 +143,7 @@
     <Compile Include="Controllers\DataCollectionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MamoController.cs" />
+    <Compile Include="Controllers\TUMPController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserTypeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -153,14 +154,18 @@
     <Compile Include="Models\db.cs" />
     <Compile Include="Models\error.cs" />
     <Compile Include="Models\general.cs" />
+    <Compile Include="Models\league.cs" />
     <Compile Include="Models\mamo.cs" />
     <Compile Include="Models\mamo_team.cs" />
     <Compile Include="Models\mamo_year.cs" />
     <Compile Include="Models\movie.cs" />
     <Compile Include="Models\moviedb.cs" />
     <Compile Include="Models\person.cs" />
+    <Compile Include="Models\player.cs" />
+    <Compile Include="Models\player_type.cs" />
     <Compile Include="Models\post.cs" />
     <Compile Include="Models\post_category.cs" />
+    <Compile Include="Models\team.cs" />
     <Compile Include="Models\user.cs" />
     <Compile Include="Models\user_type.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -250,6 +255,7 @@
     <Content Include="Views\Mamo\new_team_member.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
     <Content Include="Views\Mamo\old_team_member.cshtml" />
+    <Content Include="Views\TUMP\Index.cshtml" />
     <None Include="Web.film.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

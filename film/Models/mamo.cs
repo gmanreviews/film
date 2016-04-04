@@ -49,7 +49,7 @@ namespace film.Models
             this.submitted = submitted;
         }
 
-        public mamo(int id, string film_name, string mamo_bo_open, string mamo_bo_total, int film_ranking_point, int film_gross_points, int film_opening_points, int film_gross_opening_points)
+        public mamo(int id, string film_name, string mamo_bo_open, string mamo_bo_total, int film_ranking_point, int film_gross_points, int film_opening_points, int film_gross_opening_points, int rank)
         {
             this.id = id;
             this.film_name = film_name;
@@ -59,6 +59,7 @@ namespace film.Models
             this.film_gross_points = film_gross_points;
             this.film_opening_points = film_opening_points;
             this.film_gross_opening_points = film_gross_opening_points;
+            this.rank = rank;
         }
         public mamo(int id, string film_name, string mamo_bo_open, string mamo_bo_total, int rank, DateTime release_date)
         {

@@ -13,6 +13,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.rank)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.film_name)
         </th>
         <th>
@@ -40,6 +43,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.rank)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.film_name)
         </td>

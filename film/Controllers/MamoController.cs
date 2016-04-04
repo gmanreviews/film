@@ -31,9 +31,10 @@ namespace film.Controllers
             else return Json(new { success = false }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Team(int id, int year = 0)
+        public ActionResult Team(int id = 0)
         {
-            if (mamo_team_model.is_this_my_team(new mamo_team(id)) && mamo_team_model.is_team_submitted(new mamo_team(id))){
+            if (id == 0) return RedirectToAction("Index", "Mamo", new { error = "That was a bac link" });
+            else if (mamo_team_model.is_this_my_team(new mamo_team(id)) && !mamo_team_model.is_team_submitted(new mamo_team(id))){
                 ViewData["editable"] = (!mamo_team_model.is_team_submitted(new mamo_team(id)) && mamo_team_model.is_this_my_team(new mamo_team(id)));
                 return View(mamo_team_model.get_mamo_team(id));
             }

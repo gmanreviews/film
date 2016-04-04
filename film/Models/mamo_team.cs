@@ -296,7 +296,8 @@ namespace film.Models
                                    rank,
                                    calculate_gross_points(actual_gross, pred_gross),
                                    calculate_opening_points(actual_open, pred_open),
-                                   calculate_open_gross_points(actual_open, actual_gross, pred_open, pred_gross, is_rank_correct(rank))
+                                   calculate_open_gross_points(actual_open, actual_gross, pred_open, pred_gross, is_rank_correct(rank)),
+                                   int.Parse(reader["pred_rank"].ToString())
                                    ));
             }
             reader.Close();
