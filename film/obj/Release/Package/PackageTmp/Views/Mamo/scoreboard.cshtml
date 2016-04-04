@@ -30,7 +30,7 @@
             @Html.DisplayFor(modelItem => item.score)
         </td>
         <td>
-            @Html.ActionLink("View Submission", "myscore", new { id=item.owner.id, year = item.year.id })
+            @Html.ActionLink("View Submission", "myscore", new { id = item.id })
         </td>
     </tr>
 }

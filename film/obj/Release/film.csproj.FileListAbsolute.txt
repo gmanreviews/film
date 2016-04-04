@@ -15,6 +15,7 @@ D:\projects\film\film\bin\film.dll
 D:\projects\film\film\bin\film.pdb
 D:\projects\film\film\bin\Antlr3.Runtime.dll
 D:\projects\film\film\bin\BCrypt.Net.dll
+D:\projects\film\film\bin\BeginCollectionItem.dll
 D:\projects\film\film\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\projects\film\film\bin\Microsoft.Threading.Tasks.dll
 D:\projects\film\film\bin\Microsoft.Threading.Tasks.Extensions.Desktop.dll
@@ -47,4 +48,3 @@ D:\projects\film\film\bin\Newtonsoft.Json.xml
 D:\projects\film\film\obj\Release\film.dll
 D:\projects\film\film\obj\Release\film.pdb
 D:\projects\film\film\obj\Release\film.csprojResolveAssemblyReference.cache
-D:\projects\film\film\bin\BeginCollectionItem.dll

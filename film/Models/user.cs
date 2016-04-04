@@ -73,7 +73,7 @@ namespace film.Models
             string output = "";
             db db = new db();
             db.connect();
-            SqlDataReader reader = db.query_db("EXEC get_hashed_password '" + user.username + "'");
+            SqlDataReader reader = db.query_db("EXEC get_hashed_password '" + general.clean(user.username) + "'");
             while (reader.Read())
             {
                 if ((bool)reader["result"]) output = reader["password"].ToString();
@@ -90,9 +90,9 @@ namespace film.Models
                 user.person = person_model.add_person(user.person);
                 db db = new db();
                 db.connect();
-                SqlDataReader reader = db.query_db("EXEC create_user '" + user.username + "','"
-                                                                        + bcrypt.encrypt(user.password) + "','"
-                                                                        + user.email + "',"
+                SqlDataReader reader = db.query_db("EXEC create_user '" + general.clean(user.username) + "','"
+                                                                        + general.clean(bcrypt.encrypt(user.password)) + "','"
+                                                                        + general.clean(user.email) + "',"
                                                                         + user.person.id + ","
                                                                         + user.user_type.id);
                 while (reader.Read())
@@ -121,7 +121,7 @@ namespace film.Models
         {
             db db = new db();
             db.connect();
-            SqlDataReader reader = db.query_db("EXEC get_user '" + user.username + "'");
+            SqlDataReader reader = db.query_db("EXEC get_user '" + general.clean(user.username) + "'");
             while (reader.Read())
             {
                 user.id = int.Parse(reader["user_id"].ToString());

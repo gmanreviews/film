@@ -26,7 +26,7 @@ namespace film.Models
         {
             db db = new db();
             db.connect();
-            SqlDataReader reader = db.query_db("EXEC create_post_category '" + post_category.category + "'");
+            SqlDataReader reader = db.query_db("EXEC create_post_category '" + general.clean(post_category.category) + "'");
             while (reader.Read())
             {
                 if ((bool)reader["result"]) post_category.id = int.Parse(reader["id"].ToString());

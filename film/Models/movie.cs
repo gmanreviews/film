@@ -49,7 +49,8 @@ namespace film.Models
             {
                 db db = new db();
                 db.connect();
-                SqlDataReader reader = db.query_db("EXEC add_movie '" + general.clean(movie.film_name) + "','" + movie.bo_mojo_slug + "'");
+                SqlDataReader reader = db.query_db("EXEC add_movie '" + general.clean(movie.film_name) + "','" 
+                                                                      + general.clean(movie.bo_mojo_slug) + "'");
                 while (reader.Read())
                 {
                     if ((bool)reader["result"]) movie.id = int.Parse(reader["id"].ToString());
@@ -75,8 +76,8 @@ namespace film.Models
                                                                       + movie.release_month + ",'"
                                                                       + String.Format("{0:M/d/yyyy}", movie.release_date) + "','"
                                                                       + general.clean(movie.film_name) + "','"
-                                                                      + movie.box_office_total + "','"
-                                                                      + movie.box_office_opening + "'");
+                                                                      + general.clean(movie.box_office_total) + "','"
+                                                                      + general.clean(movie.box_office_opening) + "'");
             reader.Close();
             db.disconnect();
             //return true;
@@ -86,7 +87,7 @@ namespace film.Models
         {
             db db = new db();
             db.connect();
-            SqlDataReader reader = db.query_db("EXEC get_movie_on_slug '" + movie.bo_mojo_slug + "'");
+            SqlDataReader reader = db.query_db("EXEC get_movie_on_slug '" + general.clean(movie.bo_mojo_slug) + "'");
             while (reader.Read())
             {
                 movie.id = int.Parse(reader["id"].ToString());

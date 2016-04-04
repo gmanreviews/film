@@ -50,6 +50,21 @@
         }
     });
 
+    $("table").on("blur", ".box-office", function () {
+        if (!validate_box_office($(this).val())) {
+            var bo = $(this);
+            var dialog_text = "Please make all box office predictions be numbers and less than 1000. When you enter 1 you are predicting 1,000,000 in box office earnered. Therefore 1000 is 1,000,000,000";
+            $("<div>" + dialog_text + "</div>").dialog({
+                buttons: {
+                    Ok: function () {
+                        $(this).dialog('close');
+                        $(bo).focus();
+                    }
+                }
+            })
+        }
+    })
+
     $("table").on("click", ".remove_film", function () {
         clear_tr($(this).parents(".team_member"));
     });
@@ -93,12 +108,33 @@
     });
 });
 
+function validate_box_office(txt) {
+    var result = true;
+    try {
+        if (txt.length != 0) result = parseInt(txt) < 1000;
+    }
+    catch (err){
+        result = false;
+    }
+    finally {
+        return result;
+    }
+}
+
 function clear_tr(tr) {
     set_to_zero($(tr).find(".film_picker"));
     $(tr).find(".box-office").val("");
     $(tr).find(".mamo_film_id").val("");
     $(tr).find(".hidden_rank").val("");
     $(tr).find(".release_date").text("");
+}
+
+function clean_up_rankings() {
+    $(".team_member").each(function () {
+        if ($(this).find(".mamo_film_id").val() == 0) {
+            
+        }
+    });
 }
 
 function get_film_release_date(film_id) {

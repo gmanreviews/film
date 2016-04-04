@@ -45,8 +45,8 @@ namespace film.Models
             int country_id = add_country(person.country);
             db db = new db();
             db.connect();
-            SqlDataReader reader = db.query_db("EXEC create_person '" + person.first_name + "','"
-                                                                      + person.last_name + "',"
+            SqlDataReader reader = db.query_db("EXEC create_person '" + general.clean(person.first_name) + "','"
+                                                                      + general.clean(person.last_name) + "',"
                                                                       + country_id);
             while (reader.Read())
             {
@@ -62,7 +62,7 @@ namespace film.Models
             int country_id = 0;
             db db = new db();
             db.connect();
-            SqlDataReader reader = db.query_db("EXEC create_country '" + country + "'");
+            SqlDataReader reader = db.query_db("EXEC create_country '" + general.clean(country) + "'");
             while (reader.Read())
             {
                 country_id = int.Parse(reader["result"].ToString());

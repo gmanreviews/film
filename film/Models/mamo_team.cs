@@ -227,8 +227,8 @@ namespace film.Models
             SqlDataReader reader = db.query_db("EXEC add_team_member " + team.id + "," 
                                                                        + film.id + ","
                                                                        + film.rank + ",'"
-                                                                       + film.mamo_bo_open + "','"
-                                                                       + film.mamo_bo_total + "'");
+                                                                       + general.clean(film.mamo_bo_open) + "','"
+                                                                       + general.clean(film.mamo_bo_total) + "'");
             reader.Close();
             db.disconnect();
         }
