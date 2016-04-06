@@ -47,4 +47,3 @@ D:\projects\film\film\bin\Antlr3.Runtime.pdb
 D:\projects\film\film\bin\Newtonsoft.Json.xml
 D:\projects\film\film\obj\Release\film.dll
 D:\projects\film\film\obj\Release\film.pdb
-D:\projects\film\film\obj\Release\film.csprojResolveAssemblyReference.cache
