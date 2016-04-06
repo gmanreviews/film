@@ -123,7 +123,8 @@ function move_down(this_tr) {
 function validate_box_office(txt) {
     var result = true;
     try {
-        if (txt.length != 0) result = parseInt(txt) < 1000;
+        var result = /^\d+$/.test(txt);
+        if (txt.length != 0 && result) result = parseInt(txt) < 1000;
     }
     catch (err){
         result = false;
