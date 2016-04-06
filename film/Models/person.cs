@@ -11,12 +11,15 @@ namespace film.Models
     {
         public int id { get; set; }
         [Required]
+        [RegularExpression("[A-Za-z-_ ]+")]
         [Display(Name = "First Name")]
         public string first_name { get; set; }
         [Required]
+        [RegularExpression("[A-Za-z-_ ]+")]
         [Display(Name = "Last Name")]
         public string last_name { get; set; }
         [Required]
+        [RegularExpression("[A-Za-z-_ ']+")]
         [Display(Name = "Country")]
         public string country { get; set; }
 

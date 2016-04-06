@@ -43,17 +43,40 @@ namespace film.Controllers
 
         public ActionResult signup()
         {
+            TempData["hide_login"] = true;
             return View();
         }
 
         [HttpPost]
         public ActionResult signup(user user, int user_type_dropdown = 0)
         {
+            TempData["hide_login"] = true;
             if (ModelState.IsValid)
             {
                 user.user_type = new user_type(user_type_dropdown);
-                user_model.add_user(user);
-                return RedirectToAction("Index", "Home");
+                if (user_model.does_user_exist(user))
+                {
+                    user = user_model.remove_passwords(user);
+                    ModelState.AddModelError("username", "This username is already in use. Please choose a different one.");
+                    return View(user);
+                }
+                else if (user_model.is_email_in_use(user))
+                {
+                    user = user_model.remove_passwords(user);
+                    ModelState.AddModelError("email", "This email is already in use. Please login with your credentials. Or use a different email to create this account.");
+                    return View(user);
+                }
+                else if (!user_model.do_passwords_match(user))
+                {
+                    user = user_model.remove_passwords(user);
+                    ModelState.AddModelError("password", "These passwords do not match.");
+                    return View(user);
+                }
+                else {
+                    user_model.add_user(user);
+                    TempData["success"] = "Your user was successfully created";
+                    return RedirectToAction("Index", "Home");
+                }
             }
             else
             {

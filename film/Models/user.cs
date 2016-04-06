@@ -13,16 +13,19 @@ namespace film.Models
         public int id { get; set; }
         [Display(Name = "Username")]
         [Required]
+        [RegularExpression("[0-9a-zA-Z_-]+", ErrorMessage = "Please type in a valid username. You can use only numbers, letters and _ or -")]
         public string username { get; set; }
         [Required]
+        [RegularExpression("[0-9a-zA-Z_!?$-]+", ErrorMessage = "Please type in a valid password. You can use only numbers, letters and !,_,-,$,?.")]
         [Display(Name = "Password")]
         public string password { get; set; }
         [Display(Name = "Verify Password")]
+        [RegularExpression("[0-9a-zA-Z_!?$-]+", ErrorMessage ="Please type in a valid password. You can use only numbers, letters and !,_,-,$,?.")]
         public string password2 { get; set; }
         [Display(Name = "E-Mail")]
+        [RegularExpression("[a-zA-Z0-9_.-]+@[a-z0-9A-Z_-]+([.][a-zA-Z]{2,3})+", ErrorMessage ="Please type in a valid email address")]
         public string email { get; set; }
         public person person { get; set; }
-        //public List<usergroup> usergroups { get; set; }
         [Display(Name = "User Type")]
         public user_type user_type { get; set; }
 
@@ -47,6 +50,41 @@ namespace film.Models
     }
     public class user_model
     {
+        public static bool does_user_exist(user user)
+        {
+            bool result = false;
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC does_user_exist '" + general.clean(user.username) + "'");
+            while (reader.Read())
+            {
+                result = (bool)reader["result"];
+            }
+            reader.Close();
+            db.disconnect();
+            return result;
+        }
+
+        public static bool is_email_in_use(user user)
+        {
+            bool result = false;
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC is_email_in_use '" + general.clean(user.email) + "'");
+            while (reader.Read())
+            {
+                result = (bool)reader["result"];
+            }
+            reader.Close();
+            db.disconnect();
+            return result;
+        }
+
+        public static bool do_passwords_match(user user)
+        {
+            return user.password == user.password2;
+        }
+
         public static List<user> get_all_users()
         {
             List<user> users = new List<user>();
