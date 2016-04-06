@@ -7,9 +7,10 @@ namespace film.Models
 {
     public class general
     {
-        public static string clean(string input)
+        public static string clean(string input = null)
         {
-            return input.Replace("'", "''");
+            if (input == null) return "";
+            else return input.Replace("'", "''");
         }
 
         public static user user

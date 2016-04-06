@@ -6,48 +6,12 @@
 
     $("table").on("click", ".move_up", function () {
         var this_tr = $(this).parents(".team_member");
-        if ($(this_tr).prev(".team_member").length == 0) {
-            //do nothing
-            $("<div>This film is already your top ranked</div>").dialog({
-                buttons: {
-                    Ok: function () {
-                        $(this).dialog('close');
-                    }
-                }
-            });
-        }
-        else {
-            var prev_tr = $(this_tr).prev(".team_member");
-            $(this_tr).find(".rank").text(decrement_rank(this_tr));
-            $(this_tr).find(".hidden_rank").val(parseInt($(this_tr).find(".rank").text().trim()));
-            $(prev_tr).find(".rank").text(increment_rank(prev_tr));
-            $(prev_tr).find(".hidden_rank").val(parseInt($(prev_tr).find(".rank").text().trim()));
-            $(prev_tr).remove();
-            $(prev_tr).insertAfter(this_tr);
-        }
+        move_up(this_tr);
     });
 
     $("table").on("click", ".move_down", function () {
         var this_tr = $(this).parents(".team_member");
-        if ($(this_tr).next(".team_member").length == 0) {
-            //do nothing
-            $("<div>This film is already your bottom ranked</div>").dialog({
-                buttons: {
-                    Ok: function () {
-                        $(this).dialog('close');
-                    }
-                }
-            });
-        }
-        else {
-            var next_tr = $(this_tr).next(".team_member");
-            $(next_tr).find(".rank").text(decrement_rank(next_tr));
-            $(next_tr).find(".hidden_rank").val(parseInt($(next_tr).find(".rank").text().trim()));
-            $(this_tr).find(".rank").text(increment_rank(this_tr));
-            $(this_tr).find(".hidden_rank").val(parseInt($(this_tr).find(".rank").text().trim()));
-            $(this_tr).remove();
-            $(this_tr).insertAfter(next_tr);
-        }
+        move_down(this_tr);
     });
 
     $("table").on("blur", ".box-office", function () {
@@ -81,6 +45,7 @@
     });
 
     $(".lock").on("click", function () {
+        event.preventDefault();
         if (have_all_films_been_selected() && have_all_box_office_filled()) {
             //ajax call to lock films after dialog confirmation
             $("<div>Are you sure you want to lock in your submission. Once you've clicked 'Ok' you will not be able to edit this submission again. If you want to spend more time figuring things out then please click 'Cancel'</div>").dialog({
@@ -88,10 +53,12 @@
                     Ok: function () {
                         //do it
                         $(this).dialog('close');
-                        submit_team();
+                        $("#team_form").submit();
+                        //submit_team();
                     },
                     Cancel: function () {
                         $(this).dialog('close');
+                        //event.preventDefault();
                     }
                 }
             })
@@ -101,12 +68,57 @@
                 buttons: {
                     Ok: function () {
                         $(this).dialog('close');
+                        //event.preventDefault();
                     }
                 }
             })
         }
     });
 });
+
+function move_up(this_tr) {
+    if ($(this_tr).prev(".team_member").length == 0) {
+        //do nothing
+        $("<div>This film is already your top ranked</div>").dialog({
+            buttons: {
+                Ok: function () {
+                    $(this).dialog('close');
+                }
+            }
+        });
+    }
+    else {
+        var prev_tr = $(this_tr).prev(".team_member");
+        $(this_tr).find(".rank").text(decrement_rank(this_tr));
+        $(this_tr).find(".hidden_rank").val(parseInt($(this_tr).find(".rank").text().trim()));
+        $(prev_tr).find(".rank").text(increment_rank(prev_tr));
+        $(prev_tr).find(".hidden_rank").val(parseInt($(prev_tr).find(".rank").text().trim()));
+        $(prev_tr).remove();
+        $(prev_tr).insertAfter(this_tr);
+    }
+}
+
+function move_down(this_tr) {
+    if ($(this_tr).next(".team_member").length == 0) {
+        //do nothing
+        $("<div>This film is already your bottom ranked</div>").dialog({
+            buttons: {
+                Ok: function () {
+                    $(this).dialog('close');
+                }
+            }
+        });
+    }
+    else {
+        var next_tr = $(this_tr).next(".team_member");
+        $(next_tr).find(".rank").text(decrement_rank(next_tr));
+        $(next_tr).find(".hidden_rank").val(parseInt($(next_tr).find(".rank").text().trim()));
+        $(this_tr).find(".rank").text(increment_rank(this_tr));
+        $(this_tr).find(".hidden_rank").val(parseInt($(this_tr).find(".rank").text().trim()));
+        $(this_tr).remove();
+        $(this_tr).insertAfter(next_tr);
+    }
+}
 
 function validate_box_office(txt) {
     var result = true;
@@ -127,13 +139,16 @@ function clear_tr(tr) {
     $(tr).find(".mamo_film_id").val("");
     $(tr).find(".hidden_rank").val("");
     $(tr).find(".release_date").text("");
+    clean_up_rankings();
 }
 
 function clean_up_rankings() {
+    var dowork = false;
     $(".team_member").each(function () {
-        if ($(this).find(".mamo_film_id").val() == 0) {
-            
+        if (dowork) {
+            move_up($(this));
         }
+        else dowork = $(this).find(".mamo_film_id").val() == 0;
     });
 }
 

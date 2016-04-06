@@ -39,6 +39,13 @@
                     -->
                 </ul>
             </div>
+            @{ 
+                bool show_login = true;
+                if (TempData["hide_login"] != null) { show_login = !(bool)TempData["hide_login"]; }
+            }
+
+            @if (show_login)
+            {
             <div class="nav navbar-nav pull-right">
                 @if (film.Models.general.user.id == 0)
                 {
@@ -50,8 +57,9 @@
                         <span class="user-details">@{ Html.RenderAction("LoggedInDisplay", "User"); }</span>
                         <p>@Html.ActionLink("Logout", "Logout", "User")</p>
                     </div>
-                }
+                            }
             </div>
+                            }
         </div>
     </div>
     <div class="container body-content">

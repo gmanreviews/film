@@ -8,7 +8,7 @@
 
 <h2>Sign Up Form</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("signup","user",FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -21,7 +21,7 @@
                     <div class="col-md-2">
                         @Html.DisplayNameFor(model => model.username)
                     </div>
-                    @Html.TextBoxFor(model => model.username, new { @class = "form-control col-md-2 col-xs-7 text-box single-line" })
+                    @Html.TextBoxFor(model => model.username, new { @class = "form-control col-md-2 col-xs-7 text-box single-line", @required = "required" })
                     @Html.ValidationMessageFor(model => model.username)
                 </div>
                 <br />
@@ -29,7 +29,7 @@
                     <div class="col-md-2">
                         @Html.DisplayNameFor(model => model.password)
                     </div>
-                    @Html.PasswordFor(model => model.password, new { @class = "form-control col-md-2 col-xs-7 text-box single-line" })
+                    @Html.PasswordFor(model => model.password, new { @class = "form-control col-md-2 col-xs-7 text-box single-line", @required = "required" })
                     @Html.ValidationMessageFor(model => model.password)
                     </div>
                     <br />
@@ -37,7 +37,7 @@
                     <div class="col-md-2">
                         @Html.DisplayNameFor(model => model.password2)
                     </div>
-                    @Html.PasswordFor(model => model.password2, new { @class = "form-control col-md-2 col-xs-7 text-box single-line" })
+                    @Html.PasswordFor(model => model.password2, new { @class = "form-control col-md-2 col-xs-7 text-box single-line", @required = "required" })
                     @Html.ValidationMessageFor(model => model.password2)
                 </div>
                 <br />
@@ -45,7 +45,7 @@
                     <div class="col-md-2">
                         @Html.DisplayNameFor(model => model.person.first_name)
                     </div>
-                    @Html.TextBoxFor(model => model.person.first_name, new { @class = "form-control col-md-2 col-xs-7 text-box single-line" })
+                    @Html.TextBoxFor(model => model.person.first_name, new { @class = "form-control col-md-2 col-xs-7 text-box single-line", @required = "required" })
                     @Html.ValidationMessageFor(model => model.person.first_name)
                 </div>
                 <br />
@@ -53,7 +53,7 @@
                     <div class="col-md-2">
                         @Html.DisplayNameFor(model => model.person.last_name)
                     </div>
-                    @Html.TextBoxFor(model => model.person.last_name, new { @class = "form-control col-md-2 col-xs-7 text-box single-line" })
+                    @Html.TextBoxFor(model => model.person.last_name, new { @class = "form-control col-md-2 col-xs-7 text-box single-line", @required = "required" })
                     @Html.ValidationMessageFor(model => model.person.last_name)
                 </div>
                 <br />
@@ -61,7 +61,7 @@
                     <div class="col-md-2">
                         @Html.DisplayNameFor(model => model.email)
                     </div>
-                    @Html.TextBoxFor(model => model.email, new { @class = "form-control col-md-2 col-xs-7 text-box single-line" })
+                    @Html.TextBoxFor(model => model.email, new { @class = "form-control col-md-2 col-xs-7 text-box single-line", @required = "required" })
                     @Html.ValidationMessageFor(model => model.email)
                 </div>
                 <br />
@@ -69,7 +69,7 @@
                     <div class="col-md-2">
                         @Html.DisplayNameFor(model => model.person.country)
                     </div>
-                    @Html.TextBoxFor(model => model.person.country, new { @class = "form-control col-md-2 col-xs-7 text-box single-line" })
+                    @Html.TextBoxFor(model => model.person.country, new { @class = "form-control col-md-2 col-xs-7 text-box single-line", @required = "required" })
                     @Html.ValidationMessageFor(model => model.person.country)
                 </div>
                 <br />

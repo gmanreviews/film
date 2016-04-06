@@ -69,18 +69,17 @@ namespace film.Models
         public static void update_bo_data(movie movie)
         {
             movie.id = get_movie_on_slug(movie);
-
             db db = new db();
             db.connect();
             SqlDataReader reader = db.query_db("EXEC update_bo_data " + movie.id + "," +
-                                                                      + movie.release_month + ",'"
-                                                                      + String.Format("{0:M/d/yyyy}", movie.release_date) + "','"
-                                                                      + general.clean(movie.film_name) + "','"
-                                                                      + general.clean(movie.box_office_total) + "','"
-                                                                      + general.clean(movie.box_office_opening) + "'");
+                                                                        +movie.release_month + ",'"
+                                                                        + String.Format("{0:M/d/yyyy}", movie.release_date) + "','"
+                                                                        + general.clean(movie.film_name) + "','"
+                                                                        + general.clean(movie.box_office_total) + "','"
+                                                                        + general.clean(movie.box_office_opening) + "'");
             reader.Close();
             db.disconnect();
-            //return true;
+            
         }
 
         private static int get_movie_on_slug(movie movie)

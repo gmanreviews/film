@@ -19,8 +19,8 @@ else
     <span>This team is in draft</span>
 }
 
-@using (Html.BeginForm()) {
-    
+@using (Html.BeginForm("team","mamo",FormMethod.Post, new { @id ="team_form" })) {
+
     @Html.HiddenFor(Model => Model.id, new { @class = "team_id"})
     @Html.HiddenFor(Model => Model.year.id)
     @Html.HiddenFor(Model => Model.owner.id)
@@ -92,8 +92,8 @@ else
         
     if(!Model.submitted)
     {
-        <input type="submit" class="update_films" value="Save Draft" />
-        <input type="button" class="lock" value="Lock Films" />
+        <input type="submit" class="update_films" value="Save Draft" name="save" />
+        <input type="submit" class="lock" value="Lock Films" name="lockfilm" />
     }
 
 }
