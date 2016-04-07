@@ -222,6 +222,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="sql\database.sql" />
+    <Content Include="sql\db_update1.sql" />
     <Content Include="sql\version1.sql" />
     <Content Include="sql\version2.sql" />
     <Content Include="Web.config" />
@@ -256,6 +257,7 @@
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
     <Content Include="Views\Mamo\old_team_member.cshtml" />
     <Content Include="Views\TUMP\Index.cshtml" />
+    <Content Include="Views\User\Profile.cshtml" />
     <None Include="Web.film.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

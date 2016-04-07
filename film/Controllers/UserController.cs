@@ -91,6 +91,24 @@ namespace film.Controllers
             user_model.logout();
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult Profile()
+        {
+            if (general.user.id == 0) return RedirectToAction("Index", "Home", new { error = "You are not logged in. Please login before you go to your profile." });
+            else return View(general.user);
+        }
+
+        [HttpPost]
+        public ActionResult Profile(user user)
+        {
+            
+            if (general.user.id == 0) return RedirectToAction("Index", "Home", new { error = "You are not logged in. Please login before you go to your profile." });
+            else if (user.id != general.user.id) return RedirectToAction("Index", "Home", new { error = "You are not logged in. Please login before you go to your profile." });
+            else {
+                //update user
+                return View(user);
+            }
+        }
         
     }
 }

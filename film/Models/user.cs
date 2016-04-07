@@ -28,6 +28,8 @@ namespace film.Models
         public person person { get; set; }
         [Display(Name = "User Type")]
         public user_type user_type { get; set; }
+        [Display(Name ="Subscribe To Email")]
+        public bool subscribe_mail { get; set; }
 
         public user() { }
         public user(int id)
@@ -167,6 +169,8 @@ namespace film.Models
                                          reader["first_name"].ToString(),
                                          reader["last_name"].ToString(),
                                          reader["country_name"].ToString());
+                user.email = reader["email"].ToString();
+                user.subscribe_mail = (bool)reader["mail"];
                 remove_passwords(user);
             }
             reader.Close();
@@ -182,6 +186,24 @@ namespace film.Models
         public static bool am_i_logged_in()
         {
             return general.user.id != 0;
+        }
+
+        public static void unsubscribe_from_emails(user user)
+        {
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC unsubscribe_from_emails " + user.id);
+            reader.Close();
+            db.disconnect();
+        }
+
+        public static void subscribe_to_emails(user user)
+        {
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC subscribe_to_emails " + user.id);
+            reader.Close();
+            db.disconnect();
         }
 
     }
