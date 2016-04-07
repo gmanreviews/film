@@ -49,3 +49,18 @@ BEGIN
 	ELSE
 		SELECT CAST (0 as bit) as result;
 END
+
+GO
+
+CREATE PROCEDURE get_all_emails_subscribed 
+	-- Add the parameters for the stored procedure here	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT email FROM users WHERE subscribe_mail = 1;
+END
+GO
