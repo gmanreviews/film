@@ -124,7 +124,8 @@ namespace film.Controllers
         public ActionResult myscore(int id, int year = 0)
         {
             mamo_team team = new mamo_team();
-            team.owner = new user(id);
+            team.id = id;
+            //team.owner = new user(id);
             if (year == 0) team.year = mamo_year_model.get_current_game();
             else team.year = new mamo_year(year);
             ViewData["year_id"] = team.year.id;

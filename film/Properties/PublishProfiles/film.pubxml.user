@@ -19,7 +19,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/30/2016 21:03:38</publishTime>
     </File>
     <File Include="bin/film.dll">
-      <publishTime>04/05/2016 21:59:07</publishTime>
+      <publishTime>04/13/2016 06:07:58</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>03/12/2016 13:40:37</publishTime>
@@ -258,6 +258,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="sql/database.sql">
       <publishTime>03/11/2016 07:18:28</publishTime>
     </File>
+    <File Include="sql/db_update1.sql">
+      <publishTime>04/06/2016 22:25:33</publishTime>
+    </File>
     <File Include="sql/version1.sql">
       <publishTime>03/28/2016 19:54:04</publishTime>
     </File>
@@ -327,6 +330,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/User/LoginForm.cshtml">
       <publishTime>04/05/2016 20:34:04</publishTime>
     </File>
+    <File Include="Views/User/Profile.cshtml">
+      <publishTime>04/06/2016 22:21:26</publishTime>
+    </File>
     <File Include="Views/User/signup.cshtml">
       <publishTime>04/05/2016 20:34:58</publishTime>
     </File>
@@ -340,7 +346,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/11/2016 07:18:28</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/05/2016 21:59:11</publishTime>
+      <publishTime>04/13/2016 06:08:10</publishTime>
     </File>
   </ItemGroup>
 </Project>

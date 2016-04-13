@@ -18,7 +18,8 @@ namespace film.Controllers
         
         public JsonResult UpdateFilmData()
         {
-            curl.update_box_office_data();
+            email.send_email_notifications();
+            //curl.update_box_office_data();
             return Json(new { work = true }, JsonRequestBehavior.AllowGet);
         }
 

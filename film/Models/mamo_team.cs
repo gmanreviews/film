@@ -280,7 +280,7 @@ namespace film.Models
             List<mamo> mamos = new List<mamo>();
             db db = new db();
             db.connect();
-            SqlDataReader reader = db.query_db("EXEC mamo_team_point_break_down " + team.owner.id + "," + team.year.id);
+            SqlDataReader reader = db.query_db("EXEC mamo_team_point_break_down " + team.id + "," + team.year.id);
             while (reader.Read())
             {
                 int actual_gross = int.Parse(reader["actual_gross_total"].ToString()) / 1000000;
