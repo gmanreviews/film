@@ -7,25 +7,40 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.owner.person.first_name)
+            Position
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.owner.person.last_name)
+            Person
         </th>
+        <!--
+        <th>
+            Html.DisplayNameFor(model => model.owner.person.first_name)
+        </th>
+        <th>
+            Html.DisplayNameFor(model => model.owner.person.last_name)
+        </th>
+        -->
         <th>
             @Html.DisplayNameFor(model => model.score)
         </th>
         <th></th>
     </tr>
 
+@{ int i = 0; }
 @foreach (var item in Model) {
+    i++;
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.owner.person.first_name)
+            @Html.Raw(i)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.owner.person.last_name)
+            @Html.Raw(item.owner.person.first_name + " " + item.owner.person.last_name)
         </td>
+        <!--
+        <td>
+            Html.DisplayFor(modelItem => item.owner.person.last_name)
+        </td>
+        -->
         <td>
             @Html.DisplayFor(modelItem => item.score)
         </td>
