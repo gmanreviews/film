@@ -44,12 +44,20 @@ namespace film.Controllers
         [HttpPost]
         public ActionResult Team(int id, mamo_team team, mamo_year year, user owner, string save = null)
         {
+            DateTime cuttoff = new DateTime(2016, 5, 2, 0, 0, 0);
+            if (DateTime.Now > cuttoff)
+            {
+                ViewData["cuttoff"] = true;
+                return View(mamo_team_model.get_mamo_team(team.id));
+            }
+
             if (id != 0) team.id = id;
             if (year != null) team.year = year;
             if (owner != null) team.owner = owner;
 
             if (!mamo_team_model.is_team_submitted(team) && mamo_team_model.is_this_my_team(team)) mamo_team_model.create_team(team);
             if (save == null) mamo_team_model.submit_team(team);
+            
             ViewData["editable"] = (!mamo_team_model.is_team_submitted(team) && mamo_team_model.is_this_my_team(team));
             return View(mamo_team_model.get_mamo_team(team.id));
         }

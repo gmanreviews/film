@@ -9,6 +9,13 @@
     <script src="~/Scripts/custom/team_building.js"></script>
 }
 
+@{ 
+    if(ViewData["cuttoff"] != null)
+    {
+        <div class="cuttoff"></div>
+    }
+}
+
 <h2>Team @Html.Raw(Model.year.year)</h2>
 @if (Model.submitted)
 {
@@ -90,7 +97,7 @@ else
         </div>
     </table>
         
-    if(!Model.submitted)
+    if(!Model.submitted || DateTime.Now < new DateTime(2016, 5, 2))
     {
         <input type="submit" class="update_films" value="Save Draft" name="save" />
         <input type="submit" class="lock" value="Lock Films" name="lockfilm" />
