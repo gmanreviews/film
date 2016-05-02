@@ -1,5 +1,9 @@
 ﻿$(function () {
 
+    $(".cutoff").html("The cutoff date has come and past. This team cannot be submitted again. Too late.").dialog({
+        
+    })
+
     //rm_buttons();
     update_film_pickers();
     fill_out_ranks();
