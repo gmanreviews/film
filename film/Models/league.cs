@@ -20,5 +20,11 @@ namespace film.Models
 
             return league;
         }
+
+        private static string get_league_name(int id)
+        {
+            string league_name = "";
+            return league_name;
+        }
     }
 }

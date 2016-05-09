@@ -288,6 +288,7 @@ namespace film.Models
                 int pred_gross = int.Parse(reader["predicted_total"].ToString());
                 int pred_open = int.Parse(reader["predicted_opening"].ToString());
                 int rank = calculate_rank_point(int.Parse(reader["rank_point_diff"].ToString()));
+                if (actual_gross == 0) rank = 0;
 
                 mamos.Add(new mamo(int.Parse(reader["film_id"].ToString()),
                                    reader["film_name"].ToString(),
@@ -312,6 +313,7 @@ namespace film.Models
             if ((uint)(actual_gross - predicted_gross) <= 5) points += 10;
             if ((uint)(actual_gross - predicted_gross) <= 10) points += 5;
             if ((uint)(actual_gross - predicted_gross) <= 20) points += 1;
+            if (actual_gross == 0) points = 0;
             return points;
         }
 
@@ -321,6 +323,7 @@ namespace film.Models
             if ((uint)(actual_open - pred_open) <= 1) points += 10;
             if ((uint)(actual_open - pred_open) <= 5) points += 5;
             if ((uint)(actual_open - pred_open) <= 10) points += 1;
+            if (actual_open == 0) points = 0;
             return points;
         }
 
@@ -341,6 +344,7 @@ namespace film.Models
         {
             int point = 0;
             if (rank_correct && (uint)(actual_gross - pred_gross) <= 5 && (uint)(actual_open - pred_open) <= 1) point += 10;
+            if (actual_gross == 0) point = 0;
             return point;
         }
         
