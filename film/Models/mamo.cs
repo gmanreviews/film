@@ -94,7 +94,7 @@ namespace film.Models
             {
                 movies.Add(new mamo(int.Parse(reader["id"].ToString()),
                                      reader["name"].ToString(),
-                                     reader["box_office_total"].ToString(),
+                                     reader["box_office_opening"].ToString(),
                                      reader["box_office_total"].ToString(),
                                      DateTime.Parse(reader["release_date"].ToString()),
                                      int.Parse(reader["rank"].ToString())));
