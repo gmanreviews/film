@@ -145,7 +145,7 @@ namespace film.Models
         }
         private static string get_bo_mojo_slug(string text)
         {
-            Regex regex = new Regex("id=[a-z0-9,]+[.]htm");
+            Regex regex = new Regex("id=[a-z0-9,-]+[.]htm");
             Match m = regex.Match(text);
             string output = m.Value.ToString().Replace("id=", "").Replace(".htm", "");
             return output;
