@@ -24,6 +24,14 @@ namespace film.Models
         private static string get_league_name(int id)
         {
             string league_name = "";
+            if (id > 0) {
+                db db = new db();
+                SqlDataReader reader = db.query_db("EXEC get_league_name " + id);
+                while (reader.Read())
+                {
+                    league_name = reader["league_name"].ToString();
+                }
+            }
             return league_name;
         }
     }

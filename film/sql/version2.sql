@@ -157,3 +157,24 @@ BEGIN
 	END
 
 END
+
+
+create table tump_draft_mode(
+id int not null unique identity,
+name varchar(50) not null,
+short_code varchar(2) not null,
+primary key (id)
+);
+
+create table tump_league(
+id int not null unique identity,
+name varchar(150) not null unique,
+no_of_members int not null,
+draft_mode int not null,
+primary key(id),
+foreign key (draft_mode) references tump_draft_mode(id)
+);
+
+insert into tump_draft_mode (name, short_code)
+values ('Original','o'), 
+       ('Snake','s');

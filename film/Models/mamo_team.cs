@@ -275,6 +275,70 @@ namespace film.Models
             return teams;
         }
 
+        public static List<mamo> my_full_team_breakdown(mamo_team team)
+        {
+            List<mamo> mamos = new List<mamo>();
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC get_my_team_breakdown " + team.id + "," + team.year.id);
+            while (reader.Read())
+            {
+                mamos.Add(new mamo(int.Parse(reader["film_id"].ToString()),
+                                   reader["film_name"].ToString(),
+                                   reader["my_open"].ToString(),
+                                   reader["my_total"].ToString(),
+                                   int.Parse(reader["film_rank_bonus"].ToString()),
+                                   int.Parse(reader["total_bonus"].ToString()),
+                                   int.Parse(reader["opening_bonus"].ToString()),
+                                   int.Parse(reader["opening_total_bonus"].ToString()),
+                                   int.Parse(reader["my_rank"].ToString())
+                                   ));
+            }
+            db.disconnect();
+            return mamos;
+        }
+
+        public static int sum_rank_bonus(List<mamo> team)
+        {
+            int total = 0;
+            foreach (mamo m in team)
+            {
+                total += m.film_ranking_point;
+            }
+            return total;
+        }
+
+        public static int sum_gross_bonus(List<mamo> team)
+        {
+            int total = 0;
+            foreach (mamo m in team)
+            {
+                total += m.film_gross_points;
+            }
+            return total;
+        }
+
+        public static int sum_opening_bonus(List<mamo> team)
+        {
+            int total = 0;
+            foreach (mamo m in team)
+            {
+                total += m.film_opening_points;
+            }
+            return total;
+        }
+
+        public static int sum_opening_total_bonus(List<mamo> team)
+        {
+            int total = 0;
+            foreach (mamo m in team)
+            {
+                total += m.film_gross_opening_points;
+            }
+            return total;
+        }
+
+
         public static List<mamo> my_team_score(mamo_team team)
         {
             List<mamo> mamos = new List<mamo>();

@@ -137,7 +137,7 @@ namespace film.Controllers
             if (year == 0) team.year = mamo_year_model.get_current_game();
             else team.year = new mamo_year(year);
             ViewData["year_id"] = team.year.id;
-            return View(mamo_team_model.my_team_score(team));
+            return View(mamo_team_model.my_full_team_breakdown(team));
         }
 
         public ActionResult scoreboard(int id = 0)

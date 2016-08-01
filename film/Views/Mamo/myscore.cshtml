@@ -4,6 +4,7 @@
     ViewBag.Title = "myscore";
     Layout = "~/Views/Shared/_Layout.cshtml";
     int year_id = int.Parse(ViewData["year_id"].ToString());
+    int total_total = 0;
 }
 
 @section cssjs { }
@@ -70,9 +71,44 @@
         <td>
             @{ int total = item.film_ranking_point + item.film_gross_points + item.film_opening_points + item.film_gross_opening_points; }
             @Html.Raw(total.ToString())
+            @{ total_total += total;  }
         </td>
     </tr>
 }
+
+    <tr>
+        <td>
+            
+        </td>
+        <td>
+            Sum
+        </td>
+        <td>
+            XXX
+        </td>
+        <td>
+            XXX
+        </td>
+        <td>
+            @{ int rank_sum = film.Models.mamo_team_model.sum_rank_bonus(Model.ToList()); }
+            @Html.Raw(rank_sum.ToString())
+        </td>
+        <td>
+            @{ int gross_sum = film.Models.mamo_team_model.sum_gross_bonus(Model.ToList()); }
+            @Html.Raw(gross_sum.ToString())
+        </td>
+        <td>
+            @{ int opening_sum = film.Models.mamo_team_model.sum_opening_bonus(Model.ToList()); }
+            @Html.Raw(opening_sum.ToString())
+        </td>
+        <td>
+            @{ int opening_gross_sum = film.Models.mamo_team_model.sum_opening_total_bonus(Model.ToList()); }
+            @Html.Raw(opening_gross_sum.ToString())
+        </td>
+        <td>
+            @Html.Raw(total_total.ToString())
+        </td>
+    </tr>
 
 </table>
 
