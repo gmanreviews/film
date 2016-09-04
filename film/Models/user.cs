@@ -44,6 +44,12 @@ namespace film.Models
             this.email = email;
             this.person = person;
         }
+        public user(int id, string username, person person)
+        {
+            this.id = id;
+            this.username = username;
+            this.person = person;
+        }
         public user(int id, person person)
         {
             this.id = id;

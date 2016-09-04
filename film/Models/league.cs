@@ -34,5 +34,22 @@ namespace film.Models
             }
             return league_name;
         }
+
+        public static List<team> get_league_members(int id)
+        {
+            List<team> teams = new List<team>();
+            db db = new db();
+            db.connect();
+            SqlDataReader reader = db.query_db("EXEC get_tump_league_members " + id);
+            while (reader.Read())
+            {
+                player player = new player(new user(int.Parse(reader["id"].ToString()),reader["username"].ToString(),new person(reader["first_name"].ToString(), reader["last_name"].ToString())),(bool)reader["league_admin"]);
+                team team = new team(id, player);
+
+            }
+            db.disconnect();
+
+            return teams;
+        }
     }
 }
